@@ -1,4 +1,5 @@
 #ATTENTION: Waybar only works on Tumbleweed if removing "xdg-desktop-portal-gtk"
+# Also install "dmenu" that the menu works
 
 # Default config for sway
 #
