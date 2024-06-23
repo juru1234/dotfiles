@@ -1,5 +1,7 @@
 #ATTENTION: Waybar only works on Tumbleweed if removing "xdg-desktop-portal-gtk"
 # Add GTK_THEME=Adwaita-dark to /etc/environment to have dark mode for FF, ...
+# Make screensharing work:
+#https://github.com/emersion/xdg-desktop-portal-wlr/wiki/%22It-doesn't-work%22-Troubleshooting-Checklist
 
 # Default config for sway
 #
@@ -239,3 +241,6 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked XF86MonBrightnessUp exec brightnessctl s +5%
 bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
+
+set $XDG_CURRENT_DESKTOP "${XDG_CURRENT_DESKTOP:-sway}"
+set $MOZ_ENABLE_WAYLAND 1
