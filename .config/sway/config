@@ -230,8 +230,9 @@ bindsym Alt+tab workspace next_on_output
 exec swayidle -w \
   timeout 120 'swaylock -f -c 000000' \
   timeout 130 'systemctl suspend' \
-  timeout 100 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f -c 000000'
+
+#timeout 100 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#before-sleep 'swaylock -f -c 000000'
 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
