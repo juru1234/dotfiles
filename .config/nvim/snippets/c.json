@@ -1,0 +1,7 @@
+{
+    "pr_info": {
+        "prefix": "pr_info",
+        "body": ["pr_info(\"${1:%s}\\n\"$2, __func__);$0"],
+        "description": "pr_info() snippet"
+    }
+}
