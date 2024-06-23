@@ -88,3 +88,4 @@ function man \
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#7c6f64"
 
+FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
