@@ -1,0 +1,7 @@
+git:
+  log:
+    order: "default"
+  commit:
+    signOff: true
+os:
+  editCommand: 'nvim'
