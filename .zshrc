@@ -11,6 +11,9 @@ alias cd="z"
 alias cat="bat"
 alias lg="lazygit"
 
+#enable vi mode
+bindkey -v
+
 read line </etc/os-release
 distro=${${${line#*=}#*\"}%\"*}
 if [ "$distro" = "openSUSE Tumbleweed" ]
