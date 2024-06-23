@@ -1,5 +1,6 @@
 #ATTENTION: Waybar only works on Tumbleweed if removing "xdg-desktop-portal-gtk"
 # Also install "dmenu" that the menu works
+# Add GTK_THEME=Adwaita-dark to /etc/environment to have dark mode for FF, ...
 
 # Default config for sway
 #
