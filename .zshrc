@@ -92,7 +92,8 @@ function man \
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#7c6f64"
 
 # For sway Gnome keyring
-export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+# Must be part of system private config
+# export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
