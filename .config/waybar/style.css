@@ -33,11 +33,9 @@ window#waybar {
 #tray,
 #mode,
 #idle_inhibitor,
-#mpd {
-    padding: 0 10px;
-    margin: 6px 3px;
-    color: #000000;
-}
+/*#mpd {*/
+/*    color: #000000;*/
+/*}*/
 
 #window,
 #workspaces {
