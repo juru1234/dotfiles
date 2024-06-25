@@ -237,8 +237,10 @@ bar {
     position top
 }
 
-
+# Lock Screen
 bindsym $mod+Shift+s exec swaylock -f -c 000000
+#Screenshot
+bindsym $mod+Shift+z exec slurp | grim -g - - | wl-copy
 bindsym $mod+Shift+v exec copyq toggle
 bindsym $mod+o exec killall -SIGUSR1 waybar
 for_window [app_id="copyq"] floating enable, sticky enable, resize set height 600px width 550px, move position cursor, move down 330
