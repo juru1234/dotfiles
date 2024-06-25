@@ -32,7 +32,7 @@ client.urgent           $color_urgent            $color_urgent       $color_urge
 exec wl-paste -p -t text --watch wl-copy
 
 #kanshi must run as a service: systemctl --user enable kanshi.service
-exec_always pkill kanshi; exec kanshi
+exec_always pkill kanshi; exec kanshi &
 
 #swaymsg 'input * xkb_options compose:ralt'
 # Primary clipboard
