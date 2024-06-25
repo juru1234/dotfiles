@@ -244,14 +244,6 @@ bindsym $mod+Shift+z exec slurp | grim -g - - | wl-copy
 bindsym $mod+Shift+v exec copyq toggle
 bindsym $mod+o exec killall -SIGUSR1 waybar
 for_window [app_id="copyq"] floating enable, sticky enable, resize set height 600px width 550px, move position cursor, move down 330
-exec foot && sway '[app_id="foot"]' move container to workspace 1
-assign [app_id="firefox"] 2
-for_window [app_id="firefox"] border none
-exec MOZ_ENABLE_WAYLAND=1 firefox
-for_window [class="Slack"] move window to workspace 3
-for_window [class="Slack"] border none
-exec slack
-bindsym Alt+tab workspace next_on_output
 #bindsym Alt+tab workspace back_and_forth
 #move this block in ~/.config/sway/sway_system_specific
 # exec swayidle -w \
@@ -280,6 +272,11 @@ default_border pixel 2
 
 exec zsh ~/.config/sway/screensharing 
 
+input type:keyboard {
+  # Capslock key should work as escape key
+  # See /usr/share/X11/xkb/rules/xorg.lst for options
+	  xkb_options caps:escape
+}
 workspace 1
 
 include ~/.config/sway/sway_system_specific
