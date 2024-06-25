@@ -273,4 +273,6 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
 
 default_border pixel 2
 
+exec zsh ~/.config/sway/screensharing 
+
 include ~/.config/sway/sway_system_specific
