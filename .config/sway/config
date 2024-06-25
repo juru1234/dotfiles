@@ -3,6 +3,8 @@
 # Make screensharing work:
 #https://github.com/emersion/xdg-desktop-portal-wlr/wiki/%22It-doesn't-work%22-Troubleshooting-Checklist
 
+#openSUSE: libqt5-qtwayland must be installed for QT5 / YAST
+
 #move this block in ~/.config/sway/sway_system_specific
 # exec swayidle -w \
 #   timeout 120 'swaylock -f -c 000000' \
