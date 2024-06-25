@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Troubleshooting screensharing:
+# https://github.com/emersion/xdg-desktop-portal-wlr/wiki/%22It-doesn't-work%22-Troubleshooting-Checklist
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 systemctl --user stop pipewire pipewire.socket wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
