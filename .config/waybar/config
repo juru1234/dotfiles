@@ -1,5 +1,6 @@
 {
     "layer": "top",
+    "start_hidden": true,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["battery", "network", "bluetooth", "pulseaudio", "clock"],
