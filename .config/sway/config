@@ -3,6 +3,13 @@
 # Make screensharing work:
 #https://github.com/emersion/xdg-desktop-portal-wlr/wiki/%22It-doesn't-work%22-Troubleshooting-Checklist
 
+#move this block in ~/.config/sway/sway_system_specific
+# exec swayidle -w \
+#   timeout 120 'swaylock -f -c 000000' \
+#   timeout 10800 'systemctl suspend' \
+
+
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -26,20 +33,14 @@ client.focused          $title_outline_active    $background         $text_color
 client.focused_inactive $title_outline_unfocused $background         $text_color   $text_color           $title_outline_unfocused
 client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color   $title_outline_active
 client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
-#exec copyq
-# Regular clipboard
-#exec wl-paste -t text --watch /home/julian/go/bin/cliphist store
+
+#unify both linux clipboards
 exec wl-paste -p -t text --watch wl-copy
 
 #kanshi must run as a service: systemctl --user enable kanshi.service
 exec_always pkill kanshi; exec kanshi &
 
-#swaymsg 'input * xkb_options compose:ralt'
-# Primary clipboard
-#exec wl-paste -p -t text --watch /home/julian/go/bin/cliphist store -P
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
+# Windows key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -48,47 +49,9 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
 
-### Output configuration
-#
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 #
@@ -244,14 +207,6 @@ bindsym $mod+Shift+z exec slurp | grim -g - - | wl-copy
 bindsym $mod+Shift+v exec copyq toggle
 bindsym $mod+o exec killall -SIGUSR1 waybar
 for_window [app_id="copyq"] floating enable, sticky enable, resize set height 600px width 550px, move position cursor, move down 330
-#bindsym Alt+tab workspace back_and_forth
-#move this block in ~/.config/sway/sway_system_specific
-# exec swayidle -w \
-#   timeout 120 'swaylock -f -c 000000' \
-#   timeout 10800 'systemctl suspend' \
-#
-#timeout 100 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#before-sleep 'swaylock -f -c 000000'
 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
