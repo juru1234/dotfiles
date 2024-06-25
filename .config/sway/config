@@ -275,7 +275,7 @@ exec zsh ~/.config/sway/screensharing
 input type:keyboard {
   # Capslock key should work as escape key
   # See /usr/share/X11/xkb/rules/xorg.lst for options
-	  xkb_options caps:escape
+	  xkb_options caps:escape_shifted_capslock
 }
 workspace 1
 
