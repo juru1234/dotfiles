@@ -20,7 +20,7 @@ set $title_bg_unfocused #3c3836
 set $title_outline_active #928372
 set $title_outline_unfocused #332b2b
 
-# Set Colors:           Border                   Background          Text          Indicator             Child Border
+# Set Colors:           /order                   Background          Text          Indicator             Child Border
 client.background       $background
 client.focused          $title_outline_active    $background         $text_color   $title_outline_active $title_outline_active
 client.focused_inactive $title_outline_unfocused $background         $text_color   $text_color           $title_outline_unfocused
@@ -243,8 +243,9 @@ bindsym $mod+Shift+v exec copyq toggle
 bindsym $mod+o exec killall -SIGUSR1 waybar
 for_window [app_id="copyq"] floating enable, sticky enable, resize set height 600px width 550px, move position cursor, move down 330
 assign [app_id="firefox"] 2
-for_window [app_id="firefox"] focus
+for_window [app_id="firefox"] border none
 for_window [class="Slack"] move window to workspace 3
+for_window [class="Slack"] border none
 bindsym Alt+tab workspace next_on_output
 #bindsym Alt+tab workspace back_and_forth
 #move this block in ~/.config/sway/sway_system_specific
