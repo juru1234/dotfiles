@@ -301,7 +301,7 @@ fi
 
 # Set the line init mode (empty will keep the last mode)
 # you can also set it to others, such as $ZVM_MODE_INSERT.
-: ${ZVM_LINE_INIT_MODE:=$ZVM_MODE_LAST}
+: ${ZVM_LINE_INIT_MODE:=$ZVM_MODE_INSERT}
 
 : ${ZVM_VI_INSERT_MODE_LEGACY_UNDO:=false}
 : ${ZVM_VI_SURROUND_BINDKEY:=classic}
