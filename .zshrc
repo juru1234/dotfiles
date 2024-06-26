@@ -16,8 +16,6 @@ alias gs="git status"
 alias gd="git diff"
 alias gc="git commit"
 
-#enable vi mode
-bindkey -v
 
 read line </etc/os-release
 distro=${${${line#*=}#*\"}%\"*}
@@ -100,5 +98,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#7c6f64"
 # Must be part of system private config
 # export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
+source $HOME/.config/zsh/zsh-vi-mode.plugin.zsh
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
