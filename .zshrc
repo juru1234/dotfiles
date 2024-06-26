@@ -11,6 +11,11 @@ alias cd="z"
 alias cat="bat"
 alias lg="lazygit"
 
+alias g="git"
+alias gs="git status"
+alias gd="git diff"
+alias gc="git commit"
+
 #enable vi mode
 bindkey -v
 
