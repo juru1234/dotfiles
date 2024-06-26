@@ -2880,11 +2880,11 @@ function zvm_highlight() {
       ;;
     custom)
       local bpos=$2 epos=$3
-      local bg=${4:-$ZVM_VI_HIGHLIGHT_BACKGROUND}
-      local fg=${5:-$ZVM_VI_HIGHLIGHT_FOREGROUND}
-      local es=${6:-$ZVM_VI_HIGHLIGHT_EXTRASTYLE}
-      region=("${ZVM_REGION_HIGHLIGHT[@]}")
-      region+=("$bpos $epos fg=$fg,bg=$bg,$es")
+      #local bg=${4:-$ZVM_VI_HIGHLIGHT_BACKGROUND}
+      #local fg=${5:-$ZVM_VI_HIGHLIGHT_FOREGROUND}
+      #local es=${6:-$ZVM_VI_HIGHLIGHT_EXTRASTYLE}
+      #region=("${ZVM_REGION_HIGHLIGHT[@]}")
+      #region+=("$bpos $epos fg=$fg,bg=$bg,$es")
       redraw=true
       ;;
     clear)
