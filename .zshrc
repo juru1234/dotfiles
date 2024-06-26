@@ -17,21 +17,21 @@ alias gd="git diff"
 alias gc="git commit"
 
 
-read line </etc/os-release
-distro=${${${line#*=}#*\"}%\"*}
-if [ "$distro" = "openSUSE Tumbleweed" ]
-then
-	source /usr/share/fzf/shell/key-bindings.zsh
-	source /usr/share/fzf/shell/completion.zsh
-else
-	source ~/.local/share/fzf/key-bindings.zsh
-	source ~/.local/share/fzf/completion.zsh
-fi
+# This block is moved to zsh-vi-mode.zsh
+# read line </etc/os-release
+# distro=${${${line#*=}#*\"}%\"*}
+# if [ "$distro" = "openSUSE Tumbleweed" ]
+# then
+# 	source /usr/share/fzf/shell/key-bindings.zsh
+# 	source /usr/share/fzf/shell/completion.zsh
+# else
+# 	source ~/.local/share/fzf/key-bindings.zsh
+# 	source ~/.local/share/fzf/completion.zsh
+# fi
 
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$GOBIN:$PATH
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
@@ -42,6 +42,9 @@ export EDITOR=nvim
 
 source $HOME/.config/zsh/colored_man_pages.zsh
 source $HOME/.config/zsh/syntax_highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#if plugins dont work correctly, source them
+#in zsh-vi-mode.zsh in my_init()
 source $HOME/.config/zsh/zsh-vi-mode.plugin.zsh
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
