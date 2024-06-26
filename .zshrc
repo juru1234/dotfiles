@@ -35,6 +35,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
+export EDITOR=nvim
 # For sway Gnome keyring
 # Must be part of system private config
 # export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
