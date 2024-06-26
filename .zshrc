@@ -40,6 +40,7 @@ eval "$(starship init zsh)"
 # export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 source $HOME/.config/zsh/colored_man_pages.zsh
+source $HOME/.config/zsh/syntax_highlighting/zsh-syntax-highlighting.plugin.zsh
 source $HOME/.config/zsh/zsh-vi-mode.plugin.zsh
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
