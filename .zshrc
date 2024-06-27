@@ -32,6 +32,11 @@ source $HOME/.config/zsh/colored_man_pages.zsh
 source $HOME/.config/zsh/syntax_highlighting/zsh-syntax-highlighting.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+ function zvm_config() {
+   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+   ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
+
+}
 #if plugins dont work correctly, source them
 #in my_zsh_after_init()
 function my_zsh_after_init() {
