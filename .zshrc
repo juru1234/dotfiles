@@ -1,8 +1,15 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ### INSTALL DEPENDENCIES ###############################
-oh_my_zsh_dir=~/.oh-my-zsh
-if [ ! -d $oh_my_zsh_dir ]; then
-    echo "Installing ohmyzsh"
-    git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+antidote_dir=~/.antidote
+if [ ! -d $antidote_dir ]; then
+    echo "Installing antidote"
+    git clone --quiet --depth 1 https://github.com/mattmc3/antidote.git ~/.antidote
 fi
 
 fzf_dir=~/.fzf
@@ -11,20 +18,6 @@ if [ ! -d $fzf_dir ]; then
     git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 fi
 
-
-# Function to install a oh-my-zhs plugin if it doesn't exist
-omz_install_resource() {
-  local resource_type="$1"
-  local resource_name="$2"
-  local resource_url="$3"
-  local oh_my_zsh_resource_dir=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/$resource_type/$resource_name
-  
-  # Check if the plugin already exists
-  if [ ! -d "$oh_my_zsh_resource_dir" ]; then
-    echo "Installing $resource_name of type $resource_type in path: $oh_my_zsh_resource_dir"
-    git clone --quiet --depth 1 "$resource_url" "$oh_my_zsh_resource_dir"
-  fi
-}
 ########################################################
 
 alias v="nvim"
@@ -50,18 +43,18 @@ export EDITOR=nvim
 # Must be part of system private config
 # export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
-
-omz_install_resource "plugins" "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions"
-omz_install_resource "plugins" "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting"
-omz_install_resource "plugins" "fzf" "https://github.com/junegunn/fzf"
-
-plugins=(vi-mode colored-man-pages zoxide zsh-autosuggestions zsh-syntax-highlighting)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 typeset -g VI_MODE_SET_CURSOR=true
 
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
-# fzf integration mus be sourced after ohmyzsh
+source ~/.antidote/antidote.zsh
+antidote load
+
+source ~/.config/zsh/colored_man_pages.zsh
+# fzf integration mus be sourced after antidote
 source <(fzf --zsh)
-eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
