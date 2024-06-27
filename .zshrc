@@ -12,6 +12,11 @@ if [ ! -d $fzf_dir ]; then
 fi
 
 ########################################################
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+SAVEHIST=1000000000
+HISTFILE=~/.zsh_history
+setopt share_history
 
 alias v="nvim"
 alias vi="nvim"
