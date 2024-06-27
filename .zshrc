@@ -47,6 +47,11 @@ function my_zsh_after_init() {
 	fi
 }
 zvm_after_init_commands+=(my_zsh_after_init)
+function zvm_send_osc52() {
+  BUF64=$(echo -n $1 | base64)
+  OSC52="'\e]52;c;${BUF64}\e\\'"
+  echo -e -n ${OSC52}
+}
 source $HOME/.config/zsh/zsh-vi-mode.plugin.zsh
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE

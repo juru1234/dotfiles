@@ -1041,9 +1041,7 @@ function zvm_yank() {
     CUTBUFFER=${CUTBUFFER}$'\n'
   fi
 
-  BUF64=$(echo -n $CUTBUFFER | base64)
-  OSC52="'\e]52;c;${BUF64}\e\\'"
-  echo -e -n ${OSC52}
+  zvm_send_osc52 $CUTBUFFER
 
   CURSOR=$bpos MARK=$epos
 }
