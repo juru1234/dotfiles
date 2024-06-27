@@ -1040,10 +1040,9 @@ function zvm_yank() {
   if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
     CUTBUFFER=${CUTBUFFER}$'\n'
   fi
-  # X=$(echo $CUTBUFFER | base64)
-  # echo $X
-  # NEW="'\e]52;c;${X}\e\\'"
-  # echo -e ${NEW}
+  X=$(echo -n $CUTBUFFER | base64)
+  NEW="'\e]52;c;${X}\e\\'"
+  echo -e -n ${NEW}
   # export PATH=/usr/bin
   # X=$(echo $CUTBUFFER | base64)
   # echo $X
