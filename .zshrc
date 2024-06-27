@@ -42,6 +42,7 @@ export EDITOR=nvim
 # export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
 
 typeset -g VI_MODE_SET_CURSOR=true
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
 source ~/.antidote/antidote.zsh
 antidote load
