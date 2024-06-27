@@ -1040,6 +1040,14 @@ function zvm_yank() {
   if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
     CUTBUFFER=${CUTBUFFER}$'\n'
   fi
+  # X=$(echo $CUTBUFFER | base64)
+  # echo $X
+  # NEW="'\e]52;c;${X}\e\\'"
+  # echo -e ${NEW}
+  # export PATH=/usr/bin
+  # X=$(echo $CUTBUFFER | base64)
+  # echo $X
+  # echo -e '\e]${X}\a'
   CURSOR=$bpos MARK=$epos
 }
 
