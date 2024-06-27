@@ -319,19 +319,6 @@ fi
 : ${ZVM_CURSOR_STYLE_ENABLED:=true}
 
 # All the extra commands
-function my_init() {
-	read line </etc/os-release
-	distro=${${${line#*=}#*\"}%\"*}
-	if [ "$distro" = "openSUSE Tumbleweed" ]
-	then
-		source /usr/share/fzf/shell/key-bindings.zsh
-		source /usr/share/fzf/shell/completion.zsh
-	else
-		source ~/.local/share/fzf/key-bindings.zsh
-		source ~/.local/share/fzf/completion.zsh
-	fi
-}
-zvm_after_init_commands+=(my_init)
 commands_array_names=(
   zvm_before_init_commands
   zvm_after_init_commands
