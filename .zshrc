@@ -44,7 +44,7 @@ export EDITOR=nvim
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 typeset -g VI_MODE_SET_CURSOR=true
 
-source ~/.antidote/antidote.zsh
+#source ~/.antidote/antidote.zsh
 antidote load
 
 eval "$(starship init zsh)"
