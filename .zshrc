@@ -49,6 +49,8 @@ typeset -g VI_MODE_SET_CURSOR=true
 source ~/.antidote/antidote.zsh
 antidote load
 
+eval "$(starship init zsh)"
+
 source ~/.config/zsh/colored_man_pages.zsh
 # fzf integration mus be sourced after antidote
 source <(fzf --zsh)
