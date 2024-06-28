@@ -51,6 +51,12 @@ function zvm_config() {
    ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
 }
 
+function zvm_after_yank {
+BUF64=$(echo -n "$1" | base64)
+OSC52="'\e]52;c;${BUF64}\e\\'"
+echo -e -n ${OSC52}
+}
+
 antidote load
 
 eval "$(starship init zsh)"
