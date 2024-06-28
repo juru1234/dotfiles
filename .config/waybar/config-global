@@ -1,5 +1,3 @@
-// vim: foldmethod=marker
-
 // for all options look in: 
 // https://github.com/Alexays/Waybar/tree/master/man
 // https://github.com/Alexays/Waybar/wiki/
@@ -102,10 +100,10 @@
 // {{{ CPU
 "cpu": {
 	"interval": 10,
-        "format": "{usage}\n󰍛",
+        "format": "c\n{usage}",
         "tooltip": true,
         
-	"on-click-right": "kitty --title floating_term_kitty --detach btop",
+	"on-click-right": "foot htop",
 },
 // }}} 
 
@@ -124,12 +122,12 @@
 "memory": {
 	"interval": 10,
 
-	"format": "{percentage}\n{swapPercentage}\n󰧑",
+	"format": "m\n{percentage}\ns\n{swapPercentage}\n",
 
 	"tooltip": true,
 	"tooltip-format": "RAM:\nUsed: {used} GiB\nAvailable: {avail} GiB\n\nSwap:\nUsed: {swapUsed} GiB\nAvailable: {swapAvail} GiB",
 
-        "on-click-right": "kitty --title floating_term_kitty --detach btop",
+        "on-click-right": "foot htop",
 },
 // }}} 
 
@@ -145,7 +143,7 @@
 	"tooltip-format-disconnected":  "Disconnected",
 
 	"on-click": "rfkill toggle wifi",
-	"on-click-right":"kitty --title floating_term_kitty --detach nmtui connect",
+	"on-click-right":"foot --app-id foot_nmtui nmtui",
 },
 // }}}
 
@@ -169,7 +167,7 @@
         },
 
 	"on-click": "pactl set-sink-mute 0 toggle && $HOME/.scripts/progressbar.sh --volume-mute",
-        "on-click-right": "kitty --title floating_term_kitty --detach pulsemixer",
+        "on-click-right": "pavucontrol",
 
 	"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1% && $HOME/.scripts/progressbar.sh --volume",
 	"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1% && $HOME/.scripts/progressbar.sh --volume",
@@ -184,7 +182,7 @@
 	"format-source-muted": "",
 
 	"on-click": "pactl set-source-mute 0 1 && $HOME/.scripts/progressbar.sh --mic-mute",
-        "on-click-right": "kitty --title floating_term_kitty --detach pulsemixer",
+        "on-click-right": "pavucontrol",
 
 	"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1% && $HOME/.scripts/progressbar.sh --mic-volume",
 	"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1% && $HOME/.scripts/progressbar.sh --mic-volume",
