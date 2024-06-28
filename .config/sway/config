@@ -210,6 +210,7 @@ bindsym $mod+Shift+v exec copyq toggle
 bindsym $mod+Shift+o exec killall -SIGUSR1 waybar
 for_window [app_id="copyq"] floating enable, sticky enable, resize set height 600px width 550px, move position cursor, move down 330
 
+for_window [app_id="foot_nmtui"] floating enable, sticky enable, resize set 1000px 700px, move position cursor
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
