@@ -44,24 +44,26 @@ export EDITOR=nvim
 typeset -g VI_MODE_SET_CURSOR=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
+function zvm_after_init() {
+	source <(fzf --zsh)
+}
 
-source ~/.antidote/antidote.zsh
+
 function zvm_config() {
-   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-   ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
+	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+	ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
 }
 
 function zvm_after_yank {
-BUF64=$(echo -n "$1" | base64)
-OSC52="'\e]52;c;${BUF64}\e\\'"
-echo -e -n ${OSC52}
+	BUF64=$(echo -n "$1" | base64)
+	OSC52="'\e]52;c;${BUF64}\e\\'"
+	echo -e -n ${OSC52}
 }
 
+source ~/.antidote/antidote.zsh
 antidote load
 
 eval "$(starship init zsh)"
-# fzf integration mus be sourced after antidote
-source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
