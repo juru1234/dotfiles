@@ -48,16 +48,22 @@ function zvm_after_init() {
 	source <(fzf --zsh)
 }
 
-
 function zvm_config() {
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 	ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
 }
 
-function zvm_after_yank {
-	BUF64=$(echo -n "$1" | base64)
+my_zvm_vi_yank() {
+	zvm_yank
+	BUF64=$(echo -n "$CUTBUFFER" | base64)
 	OSC52="'\e]52;c;${BUF64}\e\\'"
 	echo -e -n ${OSC52}
+	zvm_exit_visual_mode ${1:-true}
+}
+
+zvm_after_lazy_keybindings() {
+  zvm_define_widget my_zvm_vi_yank
+  zvm_bindkey visual 'y' my_zvm_vi_yank
 }
 
 source ~/.antidote/antidote.zsh
