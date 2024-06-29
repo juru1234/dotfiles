@@ -167,7 +167,7 @@
         },
 
 	"on-click": "pactl set-sink-mute 0 toggle && $HOME/.scripts/progressbar.sh --volume-mute",
-        "on-click-right": "pavucontrol",
+        "on-click-right": "foot pulsemixer",
 
 	"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1% && $HOME/.scripts/progressbar.sh --volume",
 	"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1% && $HOME/.scripts/progressbar.sh --volume",
@@ -182,7 +182,7 @@
 	"format-source-muted": "",
 
 	"on-click": "pactl set-source-mute 0 1 && $HOME/.scripts/progressbar.sh --mic-mute",
-        "on-click-right": "pavucontrol",
+        "on-click-right": "foot pulsemixer",
 
 	"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1% && $HOME/.scripts/progressbar.sh --mic-volume",
 	"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1% && $HOME/.scripts/progressbar.sh --mic-volume",

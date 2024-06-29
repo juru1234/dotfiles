@@ -39,7 +39,7 @@
     "pulseaudio": {
     "format": "v: {volume}",
     "scroll-step": 1,
-    "on-click": "pavucontrol",
+    "on-click": "foot pulsemixer",
     "ignored-sinks": ["Easy Effects Sink"]
     }
 }
