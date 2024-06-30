@@ -205,7 +205,7 @@ bar {
 }
 
 # Lock Screen
-bindsym $mod+Shift+s exec ~/config/sway/screenlock
+bindsym $mod+Shift+s exec ~/.config/sway/screenlock
 #Screenshot
 bindsym $mod+Shift+z exec slurp | grim -g - - | wl-copy
 bindsym $mod+Shift+v exec copyq toggle
