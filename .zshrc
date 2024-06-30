@@ -20,7 +20,6 @@ setopt share_history
 
 alias v="nvim"
 alias vi="nvim"
-alias ls="eza"
 alias l="ls -al"
 alias cd="z"
 alias cat="bat"
@@ -68,6 +67,8 @@ zvm_after_lazy_keybindings() {
 
 source ~/.antidote/antidote.zsh
 antidote load
+# Must be after antidote load
+alias ls="eza"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
