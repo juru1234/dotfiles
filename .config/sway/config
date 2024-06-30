@@ -10,6 +10,8 @@
 #   timeout 120 'swaylock -f -c 000000' \
 #   timeout 10800 'systemctl suspend' \
 
+# dark mode for sway:
+# gtk3/gtk4: add GTK_THEME=Adwaita-dark to /etc/environment
 
 
 # Default config for sway
