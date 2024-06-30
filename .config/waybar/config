@@ -17,14 +17,14 @@
 //],
 
 "modules-right": [
-			"tray",
+			//"tray",
                     	"pulseaudio", 
 			"pulseaudio#source",
                     	"network", 
                     	"bluetooth",
                     	"cpu", 
                     	"memory", 
-                    	"temperature", 
+                    	//"temperature", 
                     	"battery",
                     	"clock"
 ],
