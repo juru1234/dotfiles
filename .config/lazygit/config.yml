@@ -4,4 +4,4 @@ git:
   commit:
     signOff: true
 os:
-  editCommand: 'nvim'
+  edit: 'nvim'
