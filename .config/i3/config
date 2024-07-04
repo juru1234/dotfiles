@@ -189,4 +189,5 @@ bar {
         status_command i3status
 }
 
-exec_always --no-startup-id dunst
+exec --no-startup-id dunst
+exec --no-startup-id picom -b
