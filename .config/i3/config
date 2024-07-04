@@ -189,5 +189,12 @@ bar {
         status_command i3status
 }
 
+# Lock Screen
+bindsym $mod+Shift+s exec ~/.config/i3/screenlock
+
+for_window [class="^.*"] border pixel 1
+
 exec --no-startup-id dunst
 exec --no-startup-id picom -b
+
+exec --no-startup-id xautolock -time 15 -locker 'i3lock | xset dpms force off' &
