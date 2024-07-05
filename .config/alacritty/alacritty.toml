@@ -11,6 +11,8 @@ y = 1
 
 [window]
 decorations = "None"
+# important for tiling wm:
+dynamic_padding = true
 
 [window.padding]
 x = 0
