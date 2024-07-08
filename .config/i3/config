@@ -196,6 +196,8 @@ bindsym $mod+Shift+s exec --no-startup-id ~/.config/i3/screenlock
 #Suspend
 bindsym $mod+Shift+x exec --no-startup-id systemctl suspend
 
+bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
+
 for_window [class="^.*"] border pixel 1
 
 exec --no-startup-id dunst
