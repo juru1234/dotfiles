@@ -192,7 +192,7 @@ bar {
 }
 
 # Lock Screen
-bindsym $mod+Shift+s exec ~/.config/i3/screenlock
+bindsym $mod+Shift+s exec --no-startup-id ~/.config/i3/screenlock
 
 for_window [class="^.*"] border pixel 1
 
