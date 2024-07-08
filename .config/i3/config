@@ -28,7 +28,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 000000 --nofork
 #Lock after 15 Minutes
 exec --no-startup-id xset s off
 
@@ -193,10 +193,12 @@ bar {
 
 # Lock Screen
 bindsym $mod+Shift+s exec --no-startup-id ~/.config/i3/screenlock
+#Suspend
+bindsym $mod+Shift+x exec --no-startup-id systemctl suspend
 
 for_window [class="^.*"] border pixel 1
 
 exec --no-startup-id dunst
 exec --no-startup-id picom -b
 
-exec --no-startup-id xautolock -corners '00--' -time 15 -locker 'i3lock | xset dpms force off' &
+exec --no-startup-id xautolock -corners '00--' -time 15 -locker 'i3lock -c 000000 | xset dpms force off' &
