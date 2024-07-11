@@ -211,6 +211,4 @@ for_window [class="^.*"] border pixel 1
 exec --no-startup-id dunst
 exec --no-startup-id picom -b
 
-exec --no-startup-id xautolock -corners '00--' -time 15 -locker 'i3lock -c 000000 | xset dpms force off' &
-
 include ~/.config/i3/i3_system_specific
