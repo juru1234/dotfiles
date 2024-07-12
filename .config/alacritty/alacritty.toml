@@ -45,6 +45,11 @@ magenta = '#d3869b'
 cyan    = '#89b482'
 white   = '#d4be98'
 
+[keyboard]
+# map ctrl + semicolon to ctrl + b
+bindings = [
+{ key = "Semicolon", mods = "Control", chars = "\u0002" },
+]
 ##markdown_url
 ##'\[[^]]*\]\(([^)]+)\)',
 ## url
