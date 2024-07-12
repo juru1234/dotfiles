@@ -136,3 +136,6 @@ vim.keymap.set("n", "<leader>1", function() Harpoon:list():select(1) end)
 vim.keymap.set("n", "<leader>2", function() Harpoon:list():select(2) end)
 vim.keymap.set("n", "<leader>3", function() Harpoon:list():select(3) end)
 vim.keymap.set("n", "<leader>4", function() Harpoon:list():select(4) end)
+
+vim.keymap.set('i', 'kj', "<Esc>")
+vim.keymap.set('v', 'kj', "<Esc>")
