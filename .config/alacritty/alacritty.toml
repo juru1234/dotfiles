@@ -50,6 +50,8 @@ white   = '#d4be98'
 bindings = [
 { key = "Semicolon", mods = "Control", chars = "\u0002" },
 { key = "Ö", mods = "Control", chars = "\u0002" },
+{ key = "Ö", mods = "Super", chars = "\u0002" },
+{ key = "Semicolon", mods = "Super", chars = "\u0002" },
 ]
 ##markdown_url
 ##'\[[^]]*\]\(([^)]+)\)',
