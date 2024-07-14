@@ -170,9 +170,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym --release $mod+semicolon exec --no-startup-id xdotool key --clearmodifiers Escape
 bindsym --release $mod+o exec --no-startup-id xdotool key --clearmodifiers Ctrl+b
 bindsym --release $mod+p exec --no-startup-id xdotool key --clearmodifiers Ctrl+c
-# Arrow mode
-set $arrow Arrow Mode Active
-mode "$arrow" {
+# Nav mode
+set $nav Nav Mode
+mode "$nav" {
 #         # vim keybindings (hjkl = left, down, up, right)
 	bindsym --release h exec --no-startup-id xdotool key --clearmodifiers Left
 	bindsym --release j exec --no-startup-id xdotool key --clearmodifiers Down
@@ -188,7 +188,43 @@ mode "$arrow" {
 	bindsym semicolon mode "default"
 	bindsym --release Mod4+semicolon exec --no-startup-id xdotool key --clearmodifiers Escape
 }
-bindsym $mod+quotedbl mode "$arrow"
+bindsym $mod+quotedbl mode "$nav"
+
+# Ctrl mode
+set $ctrl Ctrl Mode
+mode "$ctrl" {
+	bindsym --release a exec --no-startup-id xdotool key --clearmodifiers Ctrl+a; mode "default"
+	bindsym --release b exec --no-startup-id xdotool key --clearmodifiers Ctrl+b; mode "default"
+	bindsym --release c exec --no-startup-id xdotool key --clearmodifiers Ctrl+c; mode "default"
+	bindsym --release d exec --no-startup-id xdotool key --clearmodifiers Ctrl+d; mode "default"
+	bindsym --release e exec --no-startup-id xdotool key --clearmodifiers Ctrl+e; mode "default"
+	bindsym --release f exec --no-startup-id xdotool key --clearmodifiers Ctrl+f; mode "default"
+	bindsym --release g exec --no-startup-id xdotool key --clearmodifiers Ctrl+g; mode "default"
+	bindsym --release h exec --no-startup-id xdotool key --clearmodifiers Ctrl+h; mode "default"
+	bindsym --release i exec --no-startup-id xdotool key --clearmodifiers Ctrl+i; mode "default"
+	bindsym --release j exec --no-startup-id xdotool key --clearmodifiers Ctrl+j; mode "default"
+	bindsym --release k exec --no-startup-id xdotool key --clearmodifiers Ctrl+k; mode "default"
+	bindsym --release l exec --no-startup-id xdotool key --clearmodifiers Ctrl+l; mode "default"
+	bindsym --release m exec --no-startup-id xdotool key --clearmodifiers Ctrl+m; mode "default"
+	bindsym --release n exec --no-startup-id xdotool key --clearmodifiers Ctrl+n; mode "default"
+	bindsym --release o exec --no-startup-id xdotool key --clearmodifiers Ctrl+o; mode "default"
+	bindsym --release p exec --no-startup-id xdotool key --clearmodifiers Ctrl+p; mode "default"
+	bindsym --release q exec --no-startup-id xdotool key --clearmodifiers Ctrl+q; mode "default"
+	bindsym --release r exec --no-startup-id xdotool key --clearmodifiers Ctrl+r; mode "default"
+	bindsym --release s exec --no-startup-id xdotool key --clearmodifiers Ctrl+s; mode "default"
+	bindsym --release t exec --no-startup-id xdotool key --clearmodifiers Ctrl+t; mode "default"
+	bindsym --release u exec --no-startup-id xdotool key --clearmodifiers Ctrl+u; mode "default"
+	bindsym --release v exec --no-startup-id xdotool key --clearmodifiers Ctrl+v; mode "default"
+	bindsym --release w exec --no-startup-id xdotool key --clearmodifiers Ctrl+w; mode "default"
+	bindsym --release x exec --no-startup-id xdotool key --clearmodifiers Ctrl+x; mode "default"
+	bindsym --release y exec --no-startup-id xdotool key --clearmodifiers Ctrl+y; mode "default"
+	bindsym --release z exec --no-startup-id xdotool key --clearmodifiers Ctrl+z; mode "default"
+	
+	bindsym Escape mode "default"
+	bindsym semicolon mode "default"
+	bindsym --release Mod4+semicolon exec --no-startup-id xdotool key --clearmodifiers Escape
+}
+bindsym $mod+bracketleft mode "$ctrl"
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
