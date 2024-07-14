@@ -176,17 +176,17 @@ mode "$arrow" {
 	bindsym --release j exec --no-startup-id xdotool key --clearmodifiers Down
 	bindsym --release k exec --no-startup-id xdotool key --clearmodifiers Up
 	bindsym --release l exec --no-startup-id xdotool key --clearmodifiers Right
-#         bindsym h exec xdotool key Left
-#         bindsym j exec xdotool key Down
-#         bindsym k exec xdotool key Up
-#         bindsym l exec xdotool key Right
-#
-#         # back to normal: Enter or Escape
+	# PageUp
+	bindsym --release comma exec --no-startup-id ydotool key 104:1 104:0
+	# PageDown
+	bindsym --release m exec --no-startup-id ydotool key 109:1 109:0
+
         bindsym Return mode "default"
 	bindsym Escape mode "default"
+	bindsym semicolon mode "default"
 	bindsym --release Mod4+semicolon exec --no-startup-id xdotool key --clearmodifiers Escape
 }
-bindsym $mod+a mode "$arrow"
+bindsym $mod+quotedbl mode "$arrow"
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
