@@ -178,9 +178,8 @@ mode "$nav" {
 	bindsym --release j exec --no-startup-id xdotool key --clearmodifiers Down
 	bindsym --release k exec --no-startup-id xdotool key --clearmodifiers Up
 	bindsym --release l exec --no-startup-id xdotool key --clearmodifiers Right
-	# PageUp
-	bindsym --release comma exec --no-startup-id ydotool key 104:1 104:0
-	# PageDown
+	bindsym --release comma exec --no-startup-id xdotool key --clearmodifiers Page_Up
+	bindsym --release comma exec --no-startup-id xdotool key --clearmodifiers Page_Down
 	bindsym --release m exec --no-startup-id ydotool key 109:1 109:0
 
         bindsym Return mode "default"
