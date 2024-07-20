@@ -9,7 +9,6 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'morhetz/gruvbox'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
-Plug('nvim-telescope/telescope.nvim', {branch='0.1.x'})
 Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
 Plug ('nvim-treesitter/nvim-treesitter', {build=':TSUpdate'})
 Plug 'windwp/nvim-autopairs'
@@ -18,6 +17,7 @@ Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
 	Plug('nvim-lua/plenary.nvim')
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
+Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
 vim.call('plug#end')
 
@@ -143,28 +143,6 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 -------------------------------------------------------------------
-
-require('telescope').setup({
-	defaults = {
-		--sorting_strategy = "ascending",
-		--layout_strategy = "horizontal",
-		--border = false,
-		prompt_title = "",
-		results_title = "",
-		preview_title = "",
-		--prompt_prefix = "",
-		selection_caret = "",
-		entry_prefix = "",
-		multi_icon = "",
-		color_devicons = false,
-		preview = { msg_bg_fillchar = ' ' },
-		layout_config = {
-			width = 9999,
-			height = 9999,
-			preview_width = { 0.6, max = 9999, min = 0 },
-		},
-	}
-})
 
 -------------------------------------------------------------------
 Harpoon = require("harpoon")

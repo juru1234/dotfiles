@@ -117,13 +117,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>f', builtin.find_files, {})
-vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>b', builtin.buffers, {})
-vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>d', builtin.diagnostics, {})
-vim.keymap.set('n', '<leader>r', builtin.lsp_references, opts)
+vim.keymap.set("n", "<leader>f", require('fzf-lua').files, { desc = "Fzf Files" })
+vim.keymap.set("n", "<leader>g", require('fzf-lua').grep_visual, { desc = "Fzf Grep" })
+vim.keymap.set("n", "<leader>b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
+vim.keymap.set("n", "<leader>d", require('fzf-lua').diagnostics_document, { desc = "Fzf Diagnostics" })
+vim.keymap.set("n", "<leader>r", require('fzf-lua').lsp_references, { desc = "Fzf References" })
 
 vim.keymap.set("n", "ha", function() Harpoon:list():add() end)
 vim.keymap.set("n", "hd", function() Harpoon:list():remove() end)
