@@ -19,6 +19,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
+Plug 'ojroques/nvim-osc52'
 vim.call('plug#end')
 
 
@@ -149,6 +150,12 @@ Harpoon = require("harpoon")
 Harpoon:setup()
 -------------------------------------------------------------------
 
+require('osc52').setup {
+  max_length = 0,
+  silent = true,
+  trim = false,
+  tmux_passthrough = true,
+}
 -------------------------------------------------------------------
 require('lualine').setup {
 	options = {
@@ -175,6 +182,10 @@ end)
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
+local function copy(lines, _)
+  require('osc52').copy(table.concat(lines, '\n'))
+end
+
 local function paste()
 	return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
 end
@@ -182,8 +193,8 @@ end
 vim.g.clipboard = {
 	name = 'OSC 52',
 	copy = {
-		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+		['+'] = copy,
+		['*'] = copy,
 	},
 	paste = {
 		['+'] = paste,
