@@ -1,23 +1,28 @@
-------------------------------------------------------------------
--- Ensure that the lazy.nvim plugin manager is installed
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
--------------------------------------------------------------------
+local Plug = vim.fn['plug#']
+
+vim.call('plug#begin')
+
+Plug 'tpope/vim-sensible'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
+Plug 'nvim-lua/plenary.nvim'
+Plug('nvim-telescope/telescope.nvim', {branch='0.1.x'})
+Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
+Plug ('nvim-treesitter/nvim-treesitter', {build=':TSUpdate'})
+Plug 'windwp/nvim-autopairs'
+Plug 'j-hui/fidget.nvim'
+Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
+	Plug('nvim-lua/plenary.nvim')
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'ggandor/leap.nvim'
+vim.call('plug#end')
+
 
 -------------------------------------------------------------------
--- Install Plugins and import keymaps
--- Both located in ~/.config/nvim/lua
-require('plugins')
 require('keymaps')
 -------------------------------------------------------------------
 
@@ -123,9 +128,6 @@ require('nvim-autopairs').setup({
 -------------------------------------------------------------------
 -- Show the status of the LSP bottom right
 require "fidget".setup {
-	window = {
-		blend = 0,
-	},
 }
 -------------------------------------------------------------------
 
