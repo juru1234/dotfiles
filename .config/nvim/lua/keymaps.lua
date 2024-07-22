@@ -122,6 +122,7 @@ vim.keymap.set("n", "<leader>g", require('fzf-lua').grep_visual, { desc = "Fzf G
 vim.keymap.set("n", "<leader>b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
 vim.keymap.set("n", "<leader>d", require('fzf-lua').diagnostics_document, { desc = "Fzf Diagnostics" })
 vim.keymap.set("n", "<leader>r", require('fzf-lua').lsp_references, { desc = "Fzf References" })
+vim.keymap.set("n", "<leader>c", require('fzf-lua').lsp_code_actions, { desc = "Fzf Code Actions" })
 
 vim.keymap.set("n", "ha", function() Harpoon:list():add() end)
 vim.keymap.set("n", "hd", function() Harpoon:list():remove() end)
