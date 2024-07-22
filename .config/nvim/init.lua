@@ -10,11 +10,11 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
-Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'morhetz/gruvbox'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
@@ -23,13 +23,15 @@ Plug 'windwp/nvim-autopairs'
 Plug 'j-hui/fidget.nvim'
 Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
 	Plug('nvim-lua/plenary.nvim')
+Plug 'm4xshen/hardtime.nvim'
+	Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
 Plug 'ojroques/nvim-osc52'
+Plug 'roxma/vim-tmux-clipboard'
 vim.call('plug#end')
-
 
 -------------------------------------------------------------------
 require('keymaps')
@@ -156,6 +158,8 @@ require("nvim-treesitter.configs").setup({
 -------------------------------------------------------------------
 Harpoon = require("harpoon")
 Harpoon:setup()
+-------------------------------------------------------------------
+require("hardtime").setup()
 -------------------------------------------------------------------
 
 require('osc52').setup {
