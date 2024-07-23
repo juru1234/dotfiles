@@ -31,6 +31,7 @@ Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
 Plug 'ojroques/nvim-osc52'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'takac/vim-hardtime'
 vim.call('plug#end')
 
 -------------------------------------------------------------------
@@ -44,6 +45,8 @@ vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
 vim.cmd('colorscheme gruvbox')
 -------------------------------------------------------------------
 
+vim.cmd("let g:hardtime_timeout = 300")
+vim.cmd("let g:hardtime_default_on = 1")
 -------------------------------------------------------------------
 -- Enable the LSP and use it with nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -159,7 +162,7 @@ require("nvim-treesitter.configs").setup({
 Harpoon = require("harpoon")
 Harpoon:setup()
 -------------------------------------------------------------------
-require("hardtime").setup()
+--require("hardtime").setup()
 -------------------------------------------------------------------
 
 require('osc52').setup {
