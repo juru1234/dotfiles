@@ -29,6 +29,11 @@ if [ ! -d $fsh ]; then
 fi
 #
 #
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$GOBIN:$PATH
+
+export EDITOR=nvim
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -163,3 +168,4 @@ eval "$(zoxide init zsh)"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
