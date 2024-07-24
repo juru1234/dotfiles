@@ -22,6 +22,11 @@ if [ ! -d $vi_mode ]; then
     git clone --quiet --depth 1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
 fi
 
+fsh=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+if [ ! -d $fsh ]; then
+    echo "Installing fast syntax highlighting"
+    git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+fi
 #
 #
 # If you come from bash you might have to change your $PATH.
@@ -123,6 +128,7 @@ plugins=(git)
 plugins+=(colored-man-pages)
 plugins+=(zsh-autosuggestions)
 plugins+=(zsh-vi-mode)
+plugins+=(fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
