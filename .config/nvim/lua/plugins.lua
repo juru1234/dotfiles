@@ -1,3 +1,7 @@
+-- Attention:
+-- this file isn't use since lazy.nvim requires LuaJIT
+-- Instead we use vimplug in main.lua
+
 vim.g.mapleader = " "
 require("lazy").setup({
 	{ url = "https://github.com/neovim/nvim-lspconfig" },
