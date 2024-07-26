@@ -61,19 +61,21 @@ zvm_yank_no_cursor_move() {
 	fi
 }
 
-my_zvm_visual_yank() {
-	zvm_yank_no_cursor_move
+zvm_osc52() {
 	BUF64=$(echo -n "$CUTBUFFER" | base64)
 	OSC52="'\e]52;c;${BUF64}\e\\'"
 	echo -e -n ${OSC52}
+}
+
+my_zvm_visual_yank() {
+	zvm_yank_no_cursor_move
+	zvm_osc52
 	zvm_exit_visual_mode ${1:-true}
 }
 
 my_zvm_cmd_yank() {
 	zvm_yank_no_cursor_move
-	BUF64=$(echo -n "$CUTBUFFER" | base64)
-	OSC52="'\e]52;c;${BUF64}\e\\'"
-	echo -e -n ${OSC52}
+	zvm_osc52
 	zvm_highlight clear
 }
 
