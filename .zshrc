@@ -87,6 +87,7 @@ alias gd="git diff"
 alias gc="git commit"
 
 source <(fzf --zsh)
+alias ls="eza"
 eval "$(zoxide init zsh)"
 
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
