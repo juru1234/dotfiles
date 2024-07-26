@@ -51,8 +51,7 @@ function zvm_config() {
 	ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
 }
 
-
-my_zvm_vi_yank() {
+zvm_yank_no_cursor_move() {
 	#copy of zvm_yank function without cursor move
 	local ret=($(zvm_calc_selection $1))
 	local bpos=$ret[1] epos=$ret[2] cpos=$ret[3]
@@ -60,37 +59,29 @@ my_zvm_vi_yank() {
 	if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
 		CUTBUFFER=${CUTBUFFER}$'\n'
 	fi
+}
 
+my_zvm_visual_yank() {
+	zvm_yank_no_cursor_move
 	BUF64=$(echo -n "$CUTBUFFER" | base64)
 	OSC52="'\e]52;c;${BUF64}\e\\'"
 	echo -e -n ${OSC52}
 	zvm_exit_visual_mode ${1:-true}
 }
 
-my_zvm_yank() {
-	#copy of zvm_yank function without cursor move
-	local ret=($(zvm_calc_selection $1))
-	local bpos=$ret[1] epos=$ret[2] cpos=$ret[3]
-	CUTBUFFER=${BUFFER:$bpos:$((epos-bpos))}
-	if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
-		CUTBUFFER=${CUTBUFFER}$'\n'
-	fi
-
+my_zvm_cmd_yank() {
+	zvm_yank_no_cursor_move
 	BUF64=$(echo -n "$CUTBUFFER" | base64)
 	OSC52="'\e]52;c;${BUF64}\e\\'"
 	echo -e -n ${OSC52}
-	case "$ZVM_MODE" in
-		$ZVM_MODE_VISUAL) zle visual-mode;;
-		$ZVM_MODE_VISUAL_LINE) zle visual-line-mode;;
-	esac
 	zvm_highlight clear
 }
 
 zvm_after_lazy_keybindings() {
-  zvm_define_widget my_zvm_yank
-  zvm_define_widget my_zvm_vi_yank
-  zvm_bindkey visual 'y' my_zvm_vi_yank
-  zvm_bindkey vicmd 'y' my_zvm_yank
+  zvm_define_widget my_zvm_cmd_yank
+  zvm_define_widget my_zvm_visual_yank
+  zvm_bindkey vicmd 'y' my_zvm_cmd_yank
+  zvm_bindkey visual 'y' my_zvm_visual_yank
 } 
 
 #Add wisely, as too many plugins slow down shell startup.
