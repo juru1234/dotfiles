@@ -1,25 +1,25 @@
 #!/bin/bash
 
-[ ! -d ~/.oh-my-zsh ] && (echo "Installing oh my zsh"
-	git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh)
+[ ! -d ~/.oh-my-zsh ] && echo "Installing oh my zsh" &&
+	git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
-[ ! -d ~/.fzf ] && (echo "Installing junegunn fzf integration"
-	git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf)
+[ ! -d ~/.fzf ] && echo "Installing junegunn fzf integration" &&
+	git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 DIR=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-[ ! -d $DIR ] && (echo "Installing zsh autosuggestions"
-	git clone --quiet --depth 1 https://github.com/zsh-users/zsh-autosuggestions "${DIR}")
+[ ! -d $DIR ] && echo "Installing zsh autosuggestions" &&
+	git clone --quiet --depth 1 https://github.com/zsh-users/zsh-autosuggestions "${DIR}"
 
 DIR=~/.oh-my-zsh/custom/plugins/zsh-vi-mode
-[ ! -d $DIR ] && (echo "Installing zsh vi mode"
-	git clone --quiet --depth 1 https://github.com/jeffreytse/zsh-vi-mode "${DIR}")
+[ ! -d $DIR ] && echo "Installing zsh vi mode" &&
+	git clone --quiet --depth 1 https://github.com/jeffreytse/zsh-vi-mode "${DIR}"
 
 DIR=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
-[ ! -d $DIR ] && (echo "Installing fast syntax highlighting"
-	git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${DIR}")
+[ ! -d $DIR ] && echo "Installing fast syntax highlighting" &&
+	git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${DIR}"
 
 DIR=~/.local/share/fonts/IBMPlexMono
-[ ! -d $DIR ] && (mkdir -p $DIR; curl -Ls https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IBMPlexMono.tar.xz | tar Jxf - -C $DIR)
+[ ! -d $DIR ] && echo "Installing nerd font" && mkdir -p $DIR && curl -Ls https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IBMPlexMono.tar.xz | tar Jxf - -C $DIR
 
 export EDITOR=nvim
 
