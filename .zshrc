@@ -1,32 +1,22 @@
-omz_dir=~/.oh-my-zsh
-if [ ! -d $omz_dir ]; then
-    echo "Installing oh my zsh"
-    git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-fi
+#!/bin/bash
 
-fzf_dir=~/.fzf
-if [ ! -d $fzf_dir ]; then
-    echo "Installing junegunn fzf integration"
-    git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-fi
+[ ! -d ~/.oh-my-zsh ] && (echo "Installing oh my zsh"
+	git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh)
 
-as_dir=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-if [ ! -d $as_dir ]; then
-    echo "Installing zsh autosuggestions"
-    git clone --quiet --depth 1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
+[ ! -d ~/.fzf ] && (echo "Installing junegunn fzf integration"
+	git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf)
 
-vi_mode=~/.oh-my-zsh/custom/plugins/zsh-vi-mode
-if [ ! -d $vi_mode ]; then
-    echo "Installing zsh vi mode"
-    git clone --quiet --depth 1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
-fi
+DIR=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+[ ! -d $DIR ] && (echo "Installing zsh autosuggestions"
+	git clone --quiet --depth 1 https://github.com/zsh-users/zsh-autosuggestions "${DIR}")
 
-fsh=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
-if [ ! -d $fsh ]; then
-    echo "Installing fast syntax highlighting"
-    git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-fi
+DIR=~/.oh-my-zsh/custom/plugins/zsh-vi-mode
+[ ! -d $DIR ] && (echo "Installing zsh vi mode"
+	git clone --quiet --depth 1 https://github.com/jeffreytse/zsh-vi-mode "${DIR}")
+
+DIR=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+[ ! -d $DIR ] && (echo "Installing fast syntax highlighting"
+	git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${DIR}")
 
 export EDITOR=nvim
 
@@ -54,7 +44,7 @@ function zvm_config() {
 zvm_yank_no_cursor_move() {
 	#copy of zvm_yank function without cursor move
 	local ret=($(zvm_calc_selection $1))
-	local bpos=$ret[1] epos=$ret[2] cpos=$ret[3]
+	local bpos=${ret[1]} epos=${ret[2]} cpos=${ret[3]}
 	CUTBUFFER=${BUFFER:$bpos:$((epos-bpos))}
 	if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
 		CUTBUFFER=${CUTBUFFER}$'\n'
@@ -64,7 +54,7 @@ zvm_yank_no_cursor_move() {
 zvm_osc52() {
 	BUF64=$(echo -n "$CUTBUFFER" | base64)
 	OSC52="'\e]52;c;${BUF64}\e\\'"
-	echo -e -n ${OSC52}
+	echo -e -n "${OSC52}"
 }
 
 my_zvm_visual_yank() {
