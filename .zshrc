@@ -30,25 +30,35 @@ export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$GOBIN:$PATH
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# shellcheck disable=SC2034
 ZSH_THEME="afowler"
 
+# shellcheck disable=SC2034
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
+# shellcheck disable=SC2034
 typeset -g VI_MODE_SET_CURSOR=true
 function zvm_after_init() {
+	# shellcheck disable=SC1090
 	source <(fzf --zsh)
 }
 
 function zvm_config() {
+	# shellcheck disable=SC2034
 	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+	# shellcheck disable=SC2034
 	ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
 }
 
+# shellcheck disable=SC2120
 zvm_yank_no_cursor_move() {
 	#copy of zvm_yank function without cursor move
-	local ret=($(zvm_calc_selection $1))
+	# shellcheck disable=SC2207
+	local ret=($(zvm_calc_selection "$1"))
+	# shellcheck disable=SC2034
 	local bpos=${ret[1]} epos=${ret[2]} cpos=${ret[3]}
 	CUTBUFFER=${BUFFER:$bpos:$((epos-bpos))}
+	# shellcheck disable=SC2053
 	if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
 		CUTBUFFER=${CUTBUFFER}$'\n'
 	fi
@@ -63,7 +73,7 @@ zvm_osc52() {
 my_zvm_visual_yank() {
 	zvm_yank_no_cursor_move
 	zvm_osc52
-	zvm_exit_visual_mode ${1:-true}
+	zvm_exit_visual_mode "${1:-true}"
 }
 
 my_zvm_cmd_yank() {
@@ -86,7 +96,8 @@ plugins+=(zsh-autosuggestions)
 plugins+=(zsh-vi-mode)
 plugins+=(fast-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
+# shellcheck disable=SC1091
+source "$ZSH"/oh-my-zsh.sh
 
 # User configuration
 alias v="nvim"
@@ -103,4 +114,5 @@ alias gc="git commit"
 alias ls="eza"
 eval "$(zoxide init zsh)"
 
+# shellcheck source=.zshrc_system_specific
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
