@@ -89,7 +89,6 @@ source $ZSH/oh-my-zsh.sh
 alias v="nvim"
 alias vi="nvim"
 alias l="ls -al"
-alias cd="z"
 alias cat="bat"
 alias lg="lazygit"
 
@@ -98,7 +97,6 @@ alias gs="git status"
 alias gd="git diff"
 alias gc="git commit"
 
-source <(fzf --zsh)
 alias ls="eza"
 eval "$(zoxide init zsh)"
 
