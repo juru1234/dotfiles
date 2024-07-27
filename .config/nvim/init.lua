@@ -52,8 +52,11 @@ vim.cmd("let g:hardtime_default_on = 1")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lspconfig = require('lspconfig')
+require'lspconfig'.bashls.setup{
+	filetypes = {"sh", "bash", "zsh"}
+}
 
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'bashls' }
 
 local rust_analyzer_settings = {
 	["rust-analyzer"] = {
@@ -76,6 +79,8 @@ for _, lsp in ipairs(servers) do
 		}
 	end
 end
+
+
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
