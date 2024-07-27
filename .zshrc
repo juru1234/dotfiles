@@ -18,6 +18,9 @@ DIR=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 [ ! -d $DIR ] && (echo "Installing fast syntax highlighting"
 	git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${DIR}")
 
+DIR=~/.local/share/fonts/IBMPlexMono
+[ ! -d $DIR ] && (mkdir -p $DIR; curl -Ls https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IBMPlexMono.tar.xz | tar Jxf - -C $DIR)
+
 export EDITOR=nvim
 
 export GOPATH=$HOME/go
