@@ -10,16 +10,9 @@ DIR=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 [ ! -d $DIR ] && echo "Installing zsh autosuggestions" &&
 	git clone --quiet --depth 1 https://github.com/zsh-users/zsh-autosuggestions "${DIR}"
 
-DIR=~/.oh-my-zsh/custom/plugins/zsh-vi-mode
-[ ! -d $DIR ] && echo "Installing zsh vi mode" &&
-	git clone --quiet --depth 1 https://github.com/jeffreytse/zsh-vi-mode "${DIR}"
-
 DIR=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
 [ ! -d $DIR ] && echo "Installing fast syntax highlighting" &&
 	git clone --quiet --depth 1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${DIR}"
-
-DIR=~/.local/share/fonts/IBMPlexMono
-[ ! -d $DIR ] && echo "Installing nerd font" && mkdir -p $DIR && curl -Ls https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IBMPlexMono.tar.xz | tar Jxf - -C $DIR
 
 export EDITOR=nvim
 
@@ -36,68 +29,53 @@ ZSH_THEME="afowler"
 # shellcheck disable=SC2034
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
-# shellcheck disable=SC2034
-typeset -g VI_MODE_SET_CURSOR=true
-function zvm_after_init() {
-	# shellcheck disable=SC1090
-	source <(fzf --zsh)
+# zsh-syntax-highlighting causes slow start
+plugins=(colored-man-pages zsh-autosuggestions)
+source $ZSH/oh-my-zsh.sh
+
+# Setup VI mode
+bindkey -v
+
+# Different Cursors in different modes
+export KEYTIMEOUT=1
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q'
+preexec() { echo -ne '\e[5 q' ;}
+
+# Setup OSC52 yank
+yank-osc52-buf() {
+    echo $BUFFER | ${COPY_CMD} >/dev/null 2>&1
+    printf "\033]52;c;%s\a" "$(printf %s $BUFFER | head -c 8388608 | base64 -w 0)"
 }
 
-function zvm_config() {
-	# shellcheck disable=SC2034
-	ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-	# shellcheck disable=SC2034
-	ZVM_VI_HIGHLIGHT_BACKGROUND=#83a598
+yank-osc52-cutbuf() {
+    echo $CUTBUFFER | ${COPY_CMD} >/dev/null 2>&1
+    printf "\033]52;c;%s\a" "$(printf %s $CUTBUFFER | head -c 8388608 | base64 -w 0)"
 }
 
-# shellcheck disable=SC2120
-zvm_yank_no_cursor_move() {
-	#copy of zvm_yank function without cursor move
-	# shellcheck disable=SC2207
-	local ret=($(zvm_calc_selection "$1"))
-	# shellcheck disable=SC2034
-	local bpos=${ret[1]} epos=${ret[2]} cpos=${ret[3]}
-	CUTBUFFER=${BUFFER:$bpos:$((epos-bpos))}
-	# shellcheck disable=SC2053
-	if [[ ${1:-$ZVM_MODE} == $ZVM_MODE_VISUAL_LINE ]]; then
-		CUTBUFFER=${CUTBUFFER}$'\n'
-	fi
-}
+zle -N yank-osc52-buf
+bindkey -M vicmd 'y' yank-osc52-buf
 
-zvm_osc52() {
-	BUF64=$(echo -n "$CUTBUFFER" | base64)
-	OSC52="'\e]52;c;${BUF64}\e\\'"
-	echo -e -n "${OSC52}"
-}
+vi-yank-osc52() { zle vi-yank; yank-osc52-cutbuf; }
+zle -N vi-yank-osc52
+bindkey -M visual 'y' vi-yank-osc52
 
-my_zvm_visual_yank() {
-	zvm_yank_no_cursor_move
-	zvm_osc52
-	zvm_exit_visual_mode "${1:-true}"
-}
-
-my_zvm_cmd_yank() {
-	zvm_yank_no_cursor_move
-	zvm_osc52
-	zvm_highlight clear
-}
-
-zvm_after_lazy_keybindings() {
-  zvm_define_widget my_zvm_cmd_yank
-  zvm_define_widget my_zvm_visual_yank
-  zvm_bindkey vicmd 'y' my_zvm_cmd_yank
-  zvm_bindkey visual 'y' my_zvm_visual_yank
-} 
-
-#Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-plugins+=(colored-man-pages)
-plugins+=(zsh-autosuggestions)
-plugins+=(zsh-vi-mode)
-plugins+=(fast-syntax-highlighting)
-
-# shellcheck disable=SC1091
-source "$ZSH"/oh-my-zsh.sh
 
 # User configuration
 alias v="nvim"
@@ -112,7 +90,12 @@ alias gd="git diff"
 alias gc="git commit"
 
 alias ls="eza"
-eval "$(zoxide init zsh)"
 
+source <(fzf --zsh)
+##### zoxide lazy loading #####
+z() {
+	eval "$(zoxide init zsh)"
+	z "$@"
+}
 # shellcheck source=.zshrc_system_specific
 FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
