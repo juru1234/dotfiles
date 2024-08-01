@@ -30,7 +30,7 @@ ZSH_THEME="afowler"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
 # zsh-syntax-highlighting causes slow start
-plugins=(colored-man-pages zsh-autosuggestions)
+plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Setup VI mode
