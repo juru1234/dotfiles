@@ -62,6 +62,7 @@ bindings = [
 { key = ",", mods = "Alt", chars = "\uE001" },
 { key = "j", mods = "Alt", chars = "\uE002" },
 { key = "k", mods = "Alt", chars = "\uE003" },
+{ key = ";", mods = "Alt", chars = "\uE004" },
 ]
 ##markdown_url
 ##'\[[^]]*\]\(([^)]+)\)',
