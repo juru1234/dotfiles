@@ -52,6 +52,16 @@ white   = '#d4be98'
 bindings = [
 { key = "PageUp", mods = "None", action = "ScrollPageUp" },
 { key = "PageDown", mods = "None", action = "ScrollPageDown" },
+{ key = "m", mods = "Control", action = "ScrollPageDown" },
+{ key = ",", mods = "Control", action = "ScrollPageUp" },
+{ key = "j", mods = "Control", action = "ScrollPageDown" },
+{ key = "k", mods = "Control", action = "ScrollPageUp" },
+{ key = ";", mods = "Control", action = "ToggleViMode" },
+# Codes for tmux scrolling
+{ key = "m", mods = "Alt", chars = "\uE000" },
+{ key = ",", mods = "Alt", chars = "\uE001" },
+{ key = "j", mods = "Alt", chars = "\uE002" },
+{ key = "k", mods = "Alt", chars = "\uE003" },
 ]
 ##markdown_url
 ##'\[[^]]*\]\(([^)]+)\)',
