@@ -49,8 +49,9 @@ cyan    = '#89b482'
 white   = '#d4be98'
 
 [keyboard]
-# map ctrl + semicolon to ctrl + b
 bindings = [
+{ key = "PageUp", mods = "None", action = "ScrollPageUp" },
+{ key = "PageDown", mods = "None", action = "ScrollPageDown" },
 ]
 ##markdown_url
 ##'\[[^]]*\]\(([^)]+)\)',
