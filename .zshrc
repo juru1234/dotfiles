@@ -25,7 +25,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # shellcheck disable=SC2034
 # p>GggG
-ZSH_THEME="afowler"
+ZSH_THEME="afowlerjulian"
 
 # shellcheck disable=SC2034
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
