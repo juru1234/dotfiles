@@ -1,13 +1,13 @@
-[ -n "$SSH" ] && PROMPT='%{$fg[magenta]%}%m %B%F{blue}%b%F{green}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{blue}.%F{blue})
-➜%f%b '
-[ -z "$SSH" ] && PROMPT='%B%F{blue}%b%F{green}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{blue}.%F{blue})
-➜%f%b '
-RPS1='%(?..%F{red}%? ↵%f)'
+[ -n "$SSH" ] && PROMPT='%{$fg[blue]%}%m %B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
+❯%f%b '
+[ -z "$SSH" ] && PROMPT='%B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
+❯%f%b '
+#RPS1='%(?..%F{red}%? ↵%f)'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 
 ZSH_THEME_HG_PROMPT_PREFIX="%{$fg[magenta]%}hg:‹%{$fg[yellow]%}"
 ZSH_THEME_HG_PROMPT_SUFFIX="%{$fg[magenta]%}› %{$reset_color%}"
-ZSH_THEME_HG_PROMPT_DIRTY=" %{$fg[red]%}✗"
+#ZSH_THEME_HG_PROMPT_DIRTY=" %{$fg[red]%}✗"
 ZSH_THEME_HG_PROMPT_CLEAN=""
