@@ -1,4 +1,4 @@
-[ -n "$SSH_TTY" ] && PROMPT='%{$fg[blue]%}%m %B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
+[ -n "$SSH_TTY" ] && PROMPT='%{$fg[red]%}%m %B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
 ❯%f%b '
 [ -z "$SSH_TTY" ] && PROMPT='%B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
 ❯%f%b '
