@@ -1,6 +1,6 @@
-[ -n "$SSH" ] && PROMPT='%{$fg[blue]%}%m %B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
+[ -n "$SSH_TTY" ] && PROMPT='%{$fg[blue]%}%m %B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
 ❯%f%b '
-[ -z "$SSH" ] && PROMPT='%B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
+[ -z "$SSH_TTY" ] && PROMPT='%B%F{cyan}%b%F{cyan}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{green}.%F{green})
 ❯%f%b '
 #RPS1='%(?..%F{red}%? ↵%f)'
 
