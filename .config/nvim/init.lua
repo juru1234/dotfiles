@@ -30,7 +30,6 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
 Plug 'ojroques/nvim-osc52'
-Plug 'roxma/vim-tmux-clipboard'
 Plug 'takac/vim-hardtime'
 vim.call('plug#end')
 
@@ -222,6 +221,22 @@ vim.g.clipboard = {
 	},
 }
 vim.opt.clipboard = "unnamedplus"
+if vim.env.TMUX ~= nil then
+  local copy = {'tmux', 'load-buffer', '-w', '-'}
+  local paste = {'bash', '-c', 'tmux refresh-client -l && sleep 0.05 && tmux save-buffer -'}
+  vim.g.clipboard = {
+    name = 'tmux',
+    copy = {
+      ['+'] = copy,
+      ['*'] = copy,
+    },
+    paste = {
+      ['+'] = paste,
+      ['*'] = paste,
+    },
+    cache_enabled = 0,
+  }
+end
 ------------------------------------------------------------------
 
 ------------------------------------------------------------------
