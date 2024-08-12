@@ -29,7 +29,6 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
-Plug 'ojroques/nvim-osc52'
 Plug 'takac/vim-hardtime'
 vim.call('plug#end')
 
@@ -169,12 +168,6 @@ Harpoon:setup()
 --require("hardtime").setup()
 -------------------------------------------------------------------
 
-require('osc52').setup {
-  max_length = 0,
-  silent = true,
-  trim = false,
-  tmux_passthrough = true,
-}
 -------------------------------------------------------------------
 require('lualine').setup {
 	options = {
@@ -201,26 +194,17 @@ end)
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
-local function copy(lines, _)
-  require('osc52').copy(table.concat(lines, '\n'))
-end
-
-local function paste()
-	return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
-end
-
 vim.g.clipboard = {
-	name = 'OSC 52',
-	copy = {
-		['+'] = copy,
-		['*'] = copy,
-	},
-	paste = {
-		['+'] = paste,
-		['*'] = paste,
-	},
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
 }
-vim.opt.clipboard = "unnamedplus"
 if vim.env.TMUX ~= nil then
   local copy = {'tmux', 'load-buffer', '-w', '-'}
   local paste = {'bash', '-c', 'tmux refresh-client -l && sleep 0.05 && tmux save-buffer -'}
@@ -237,6 +221,7 @@ if vim.env.TMUX ~= nil then
     cache_enabled = 0,
   }
 end
+vim.opt.clipboard = "unnamedplus"
 ------------------------------------------------------------------
 
 ------------------------------------------------------------------
