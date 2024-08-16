@@ -23,8 +23,6 @@ Plug 'windwp/nvim-autopairs'
 Plug 'j-hui/fidget.nvim'
 Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
 	Plug('nvim-lua/plenary.nvim')
-Plug 'm4xshen/hardtime.nvim'
-	Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
