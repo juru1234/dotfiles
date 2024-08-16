@@ -9,14 +9,15 @@ end
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
-
+-- vim plugins
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'takac/vim-hardtime'
+Plug 'morhetz/gruvbox'
+-- neovim plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'morhetz/gruvbox'
-Plug 'nvim-lua/plenary.nvim'
 Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
 Plug ('nvim-treesitter/nvim-treesitter', {build=':TSUpdate'})
 Plug 'windwp/nvim-autopairs'
@@ -24,10 +25,9 @@ Plug 'j-hui/fidget.nvim'
 Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
 	Plug('nvim-lua/plenary.nvim')
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
+	Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
-Plug 'takac/vim-hardtime'
 vim.call('plug#end')
 
 -------------------------------------------------------------------
