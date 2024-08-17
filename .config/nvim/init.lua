@@ -19,7 +19,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
-Plug ('nvim-treesitter/nvim-treesitter', {build=':TSUpdate'})
 Plug 'windwp/nvim-autopairs'
 Plug 'j-hui/fidget.nvim'
 Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
@@ -144,19 +143,6 @@ require('nvim-autopairs').setup({
 -- Show the status of the LSP bottom right
 require "fidget".setup {
 }
--------------------------------------------------------------------
-
--------------------------------------------------------------------
--- Plugin that highlights code in color
-require("nvim-treesitter.configs").setup({
-	ensure_installed = { "c", "javascript", "typescript",
-		"lua", "vim", "json", "html", "rust", "tsx" },
-	sync_install = false,
-	auto_install = true,
-	highlight = {
-		enable = true,
-	},
-})
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
