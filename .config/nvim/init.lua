@@ -19,7 +19,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
-Plug 'windwp/nvim-autopairs'
 Plug 'j-hui/fidget.nvim'
 Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
 	Plug('nvim-lua/plenary.nvim')
@@ -131,13 +130,6 @@ cmp.setup {
 }
 -------------------------------------------------------------------
 
--------------------------------------------------------------------
--- A super powerful autopair plugin
--- Automatically closes brackets and so on...
-require('nvim-autopairs').setup({
-	disable_filetype = { "TelescopePrompt", "vim" },
-})
--------------------------------------------------------------------
 
 -------------------------------------------------------------------
 -- Show the status of the LSP bottom right

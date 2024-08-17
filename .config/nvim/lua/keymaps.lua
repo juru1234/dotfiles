@@ -138,3 +138,11 @@ vim.keymap.set("n", "<leader>4", function() Harpoon:list():select(4) end)
 
 vim.keymap.set('i', 'kj', "<Esc>")
 vim.keymap.set('v', 'kj', "<Esc>")
+
+-- automatically expand
+vim.keymap.set('i', '(;', "(<CR>)<C-c>O<Tab>")
+vim.keymap.set('i', '{;', "{<CR>}<C-c>O<Tab>")
+vim.keymap.set('i', '[;', "[<CR>]<C-c>O<Tab>")
+vim.keymap.set('i', '\';', "\'\'<Left>")
+vim.keymap.set('i', '\";', "\"\"<Left>")
+vim.keymap.set('i', '`;', "``<Left>")
