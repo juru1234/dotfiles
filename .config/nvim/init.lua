@@ -21,7 +21,6 @@ Plug 'morhetz/gruvbox'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug('L3MON4D3/LuaSnip', { tag = 'v2.3.0' })
 Plug 'j-hui/fidget.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -110,21 +109,13 @@ end
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
--- LuaSnip provides default VSCode code snippets and
--- own ones located in ~/.config/nvim/snippets
-local luasnip = require('luasnip')
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
--------------------------------------------------------------------
-
--------------------------------------------------------------------
 -- nvim-cmp: completion engine plugin for neovim
 -- used by LSP and LuaSnip
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			vim.snippet.expand(args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -139,8 +130,6 @@ cmp.setup {
 		["TAB"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -148,8 +137,6 @@ cmp.setup {
 		["S-TAB"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -157,7 +144,6 @@ cmp.setup {
 	}),
 	sources = {
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
 	},
 }
 -------------------------------------------------------------------
