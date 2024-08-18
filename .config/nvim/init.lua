@@ -20,14 +20,22 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug ('L3MON4D3/LuaSnip', {tag='v2.3.0'})
 Plug 'j-hui/fidget.nvim'
-Plug('ThePrimeagen/harpoon', {branch='harpoon2'})
-	Plug('nvim-lua/plenary.nvim')
 Plug 'nvim-lualine/lualine.nvim'
 	Plug 'nvim-tree/nvim-web-devicons'
 Plug ('ibhagwan/fzf-lua', {branch='main'})
 Plug 'ggandor/leap.nvim'
 vim.call('plug#end')
 
+function Cycle_arg_list()
+	if vim.fn.argc() <= 1 then
+		print("Nothing to cycle")
+		return
+	end
+	local success, _ = pcall(vim.cmd, 'next')
+	if not success then
+		vim.cmd('first')
+	end
+end
 -------------------------------------------------------------------
 require('keymaps')
 -------------------------------------------------------------------
@@ -135,13 +143,6 @@ cmp.setup {
 -- Show the status of the LSP bottom right
 require "fidget".setup {
 }
--------------------------------------------------------------------
-
--------------------------------------------------------------------
-Harpoon = require("harpoon")
-Harpoon:setup()
--------------------------------------------------------------------
---require("hardtime").setup()
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------

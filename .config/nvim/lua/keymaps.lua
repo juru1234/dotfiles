@@ -124,17 +124,7 @@ vim.keymap.set("n", "<leader>d", require('fzf-lua').diagnostics_document, { desc
 vim.keymap.set("n", "<leader>r", require('fzf-lua').lsp_references, { desc = "Fzf References" })
 vim.keymap.set("n", "<leader>c", require('fzf-lua').lsp_code_actions, { desc = "Fzf Code Actions" })
 
-vim.keymap.set("n", "ha", function() Harpoon:list():add() end)
-vim.keymap.set("n", "hd", function() Harpoon:list():remove() end)
-vim.keymap.set("n", "he", function() Harpoon.ui:toggle_quick_menu(Harpoon:list()) end)
-vim.keymap.set("n", "hp", function() Harpoon:list():prev() end)
-vim.keymap.set("n", "hn", function() Harpoon:list():next() end)
-vim.keymap.set("n", "<Tab>", function() Harpoon:list():next({ ui_nav_wrap = true }) end)
-
-vim.keymap.set("n", "<leader>1", function() Harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>2", function() Harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>3", function() Harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>4", function() Harpoon:list():select(4) end)
+vim.keymap.set("n", "<Tab>", Cycle_arg_list)
 
 vim.keymap.set('i', 'kj', "<Esc>")
 vim.keymap.set('v', 'kj', "<Esc>")
