@@ -125,7 +125,16 @@ vim.keymap.set("n", "<leader>d", require('fzf-lua').diagnostics_document, { desc
 vim.keymap.set("n", "<leader>r", require('fzf-lua').lsp_references, { desc = "Fzf References" })
 vim.keymap.set("n", "<leader>c", require('fzf-lua').lsp_code_actions, { desc = "Fzf Code Actions" })
 
+--arglist
 vim.keymap.set("n", "<Tab>", Cycle_arg_list)
+vim.keymap.set("n", "<Leader>aa", ":ArgAdd<CR>")
+vim.keymap.set('n', '<Leader>ap', ':lua vim.cmd("ArgAdd " .. vim.fn.input("position (1..n): "))<CR>')
+vim.keymap.set("n", "<Leader>1", ":$argu 1<CR>")
+vim.keymap.set("n", "<Leader>2", ":$argu 2<CR>")
+vim.keymap.set("n", "<Leader>3", ":$argu 3<CR>")
+vim.keymap.set("n", "<Leader>4", ":$argu 4<CR>")
+vim.keymap.set("n", "<Leader>5", ":$argu 5<CR>")
+vim.keymap.set("n", "<Leader>6", ":$argu 6<CR>")
 
 vim.keymap.set('i', 'kj', "<Esc>")
 vim.keymap.set('v', 'kj', "<Esc>")
