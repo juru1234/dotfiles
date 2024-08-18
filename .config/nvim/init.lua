@@ -28,7 +28,7 @@ Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 vim.call('plug#end')
 
--- helpter to cycle through the argument list
+-- helper to cycle through the argument list
 function Cycle_arg_list()
 	if vim.fn.argc() <= 1 then
 		print("Nothing to cycle")
@@ -47,7 +47,6 @@ vim.api.nvim_create_user_command(
 		if opts.args == "" then
 			vim.cmd('$argadd')
 			vim.cmd('argdedupe')
-
 			return
 		end
 		local arg_num = tonumber(opts.args)
