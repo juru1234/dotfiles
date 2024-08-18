@@ -13,6 +13,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 -- vim plugins
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
 Plug 'airblade/vim-gitgutter'
 Plug 'takac/vim-hardtime'
 Plug 'morhetz/gruvbox'
