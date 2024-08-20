@@ -34,6 +34,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 # shellcheck disable=SC2034
 plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting)
 # shellcheck disable=SC1091
+
+# Automatically update without prompt
+DISABLE_UPDATE_PROMPT=true
 source "$ZSH"/oh-my-zsh.sh
 
 # Setup VI mode
