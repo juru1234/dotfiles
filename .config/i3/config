@@ -267,7 +267,7 @@ bar {
 }
 
 # Lock Screen
-bindsym $mod+Shift+s exec --no-startup-id ~/.config/i3/screenlock
+bindsym $mod+Shift+s exec --no-startup-id xscreensaver-command -lock
 #Suspend
 bindsym $mod+Shift+x exec --no-startup-id systemctl suspend
 
@@ -280,5 +280,6 @@ for_window [class="^.*"] border pixel 1
 exec --no-startup-id dunst
 exec --no-startup-id picom -b
 exec --no-startup-id ydotoold
+exec --no-startup-id xscreensaver
 
 include ~/.config/i3/i3_system_specific
