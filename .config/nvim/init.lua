@@ -25,6 +25,7 @@ Plug 'j-hui/fidget.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
+Plug 'stevearc/oil.nvim'
 vim.call('plug#end')
 
 -- helper to cycle through the argument list
@@ -150,9 +151,10 @@ cmp.setup {
 
 -------------------------------------------------------------------
 -- Show the status of the LSP bottom right
-require "fidget".setup {
-}
+require "fidget".setup()
 -------------------------------------------------------------------
+
+require("oil").setup()
 
 -------------------------------------------------------------------
 require('lualine').setup {
