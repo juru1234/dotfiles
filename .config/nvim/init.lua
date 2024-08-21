@@ -182,21 +182,21 @@ end)
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
-local function paste()
-  return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
-end
 vim.g.clipboard = {
-	name = 'OSC 52',
-	copy = {
-		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-	},
-	paste = {
-		['+'] = paste,
-		['*'] = paste,
-	},
+      name = 'OSC 52',
+      copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+      },
+      paste = {
+        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+      },
 }
+-- To ALWAYS use the clipboard for ALL operations
+-- (instead of interacting with the "+" and/or "*" registers explicitly):
 vim.opt.clipboard = "unnamedplus"
+
 ------------------------------------------------------------------
 -- abbreviations
 vim.cmd(':autocmd FileType c :iabbrev <buffer> pr@ pr_info("%s:\\n", __func__);<Esc>F\\i')
