@@ -48,6 +48,9 @@ vim.g.clipboard = {
         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
       },
 }
+-- To ALWAYS use the clipboard for ALL operations
+-- (instead of interacting with the "+" and/or "*" registers explicitly):
+vim.opt.clipboard = "unnamedplus"
 
 -- Enable the LSP and use it with nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -149,10 +152,6 @@ end)
 -- hardtime
 vim.cmd("let g:hardtime_timeout = 300")
 vim.cmd("let g:hardtime_default_on = 1")
-
--- To ALWAYS use the clipboard for ALL operations
--- (instead of interacting with the "+" and/or "*" registers explicitly):
-vim.opt.clipboard = "unnamedplus"
 
 -- abbreviations
 vim.cmd(':autocmd FileType c :iabbrev <buffer> pr@ pr_info("%s:\\n", __func__);<Esc>F\\i')
