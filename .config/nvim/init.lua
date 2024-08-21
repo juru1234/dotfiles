@@ -59,20 +59,27 @@ vim.api.nvim_create_user_command(
 	end,
 	{ nargs = '?' }
 )
--------------------------------------------------------------------
-require('keymaps')
--------------------------------------------------------------------
 
--------------------------------------------------------------------
--- Use the gruvbox scheme
+require('keymaps')
+
+-- Use the gruvbox color scheme
 vim.cmd("let g:gruvbox_transparent_bg = 1")
 vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
 vim.cmd('colorscheme gruvbox')
--------------------------------------------------------------------
 
-vim.cmd("let g:hardtime_timeout = 300")
-vim.cmd("let g:hardtime_default_on = 1")
--------------------------------------------------------------------
+-- Use osc52 as clipboard provider
+vim.g.clipboard = {
+      name = 'OSC 52',
+      copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+      },
+      paste = {
+        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+      },
+}
+
 -- Enable the LSP and use it with nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -105,12 +112,8 @@ for _, lsp in ipairs(servers) do
 	end
 end
 
-
--------------------------------------------------------------------
-
--------------------------------------------------------------------
 -- nvim-cmp: completion engine plugin for neovim
--- used by LSP and LuaSnip
+-- used by LSP
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
@@ -146,17 +149,12 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 	},
 }
--------------------------------------------------------------------
 
-
--------------------------------------------------------------------
 -- Show the status of the LSP bottom right
 require "fidget".setup()
--------------------------------------------------------------------
-
+-- file explorer
 require("oil").setup()
-
--------------------------------------------------------------------
+-- statusline
 require('lualine').setup {
 	options = {
 		icons_enabled = false,
@@ -172,47 +170,33 @@ require('lualine').setup {
 		lualine_y = { 'progress' },
 		lualine_z = { 'location' }
 	}, }
--------------------------------------------------------------------
 
--------------------------------------------------------------------
+-- fast motions
 require('leap').create_default_mappings()
 vim.keymap.set('n', 's', function()
 	require('leap').leap { target_windows = { vim.api.nvim_get_current_win() } }
 end)
--------------------------------------------------------------------
 
--------------------------------------------------------------------
-vim.g.clipboard = {
-      name = 'OSC 52',
-      copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-      },
-      paste = {
-        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-      },
-}
+-- hardtime
+vim.cmd("let g:hardtime_timeout = 300")
+vim.cmd("let g:hardtime_default_on = 1")
+
 -- To ALWAYS use the clipboard for ALL operations
 -- (instead of interacting with the "+" and/or "*" registers explicitly):
 vim.opt.clipboard = "unnamedplus"
 
-------------------------------------------------------------------
 -- abbreviations
 vim.cmd(':autocmd FileType c :iabbrev <buffer> pr@ pr_info("%s:\\n", __func__);<Esc>F\\i')
-------------------------------------------------------------------
+
 -- Set Terminal automatically to insert mode
 -- and hide line numbers in terminal mode
 vim.cmd('autocmd BufEnter,BufNew term://* startinsert')
 vim.cmd('autocmd BufEnter,BufNew term://* set laststatus=0')
 vim.cmd('autocmd TermOpen * setlocal nonumber norelativenumber nobuflisted')
-------------------------------------------------------------------
 
--------------------------------------------------------------------
 vim.cmd('set shell=/usr/bin/zsh')
 vim.cmd('set list')
 vim.cmd('set listchars=tab:*\\ ,eol:¬,trail:~')
 vim.cmd('set cmdheight=1')
 vim.wo.number = true
 vim.wo.relativenumber = true
--------------------------------------------------------------------
