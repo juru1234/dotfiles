@@ -8,7 +8,7 @@ osc52 = "CopyPaste"
 size = 10.0
 
 [font.normal]
-family = "BlexMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [font.offset]
