@@ -39,15 +39,15 @@ vim.cmd('colorscheme gruvbox')
 
 -- Use osc52 as clipboard provider
 vim.g.clipboard = {
-      name = 'OSC 52',
-      copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-      },
-      paste = {
-        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-      },
+	name = 'OSC 52',
+	copy = {
+		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+	},
+	paste = {
+		['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+	},
 }
 -- To ALWAYS use the clipboard for ALL operations
 -- (instead of interacting with the "+" and/or "*" registers explicitly):
@@ -66,13 +66,9 @@ require('lualine').setup {
 		section_separators = '',
 	},
 	sections = {
-		lualine_a = { 'mode' },
-		lualine_b = { 'branch', 'diff', 'diagnostics' },
 		lualine_c = { { 'filename', path = 1 } },
-		lualine_x = { 'encoding', 'fileformat', 'filetype' },
-		lualine_y = { 'progress' },
-		lualine_z = { 'location' }
-	}, }
+	},
+}
 
 -- fast motions
 require('leap').create_default_mappings()
