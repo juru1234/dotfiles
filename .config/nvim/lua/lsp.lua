@@ -6,6 +6,7 @@ local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'b
 local servers_in_path = { 'clangd', 'rust-analyzer', 'pyright', 'tsserver', 'lua-language-server',
 	'bash-language-server' }
 
+-- enable clippy for rust-analyzer
 local rust_analyzer_settings = {
 	["rust-analyzer"] = {
 		check = {
@@ -36,7 +37,6 @@ for index, lsp in ipairs(servers_in_path) do
 end
 
 -- nvim-cmp: completion engine plugin for neovim
--- used by LSP
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
