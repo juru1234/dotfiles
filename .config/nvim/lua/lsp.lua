@@ -1,11 +1,10 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lspconfig = require('lspconfig')
-require 'lspconfig'.bashls.setup {
-	filetypes = { "sh", "bash", "zsh" }
-}
 
 local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'bashls' }
+local servers_in_path = { 'clangd', 'rust-analyzer', 'pyright', 'tsserver', 'lua-language-server',
+	'bash-language-server' }
 
 local rust_analyzer_settings = {
 	["rust-analyzer"] = {
@@ -15,17 +14,29 @@ local rust_analyzer_settings = {
 	}
 }
 
-for _, lsp in ipairs(servers) do
-	if lsp == "rust_analyzer" then
-		lspconfig[lsp].setup {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = rust_analyzer_settings,
-		}
-	else
-		lspconfig[lsp].setup {
-			capabilities = capabilities,
-		}
+local function is_executable_in_path(executable)
+	return vim.fn.executable(executable) == 1
+end
+
+-- only setup LSP if it is in PATH
+for index, lsp in ipairs(servers_in_path) do
+	if is_executable_in_path(lsp) then
+		if lsp == "rust-analyzer" then
+			lspconfig[servers[index]].setup {
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = rust_analyzer_settings,
+			}
+		elseif lsp == "bash-language-server" then
+			lspconfig[servers[index]].setup {
+				capabilities = capabilities,
+				filetypes = { "sh", "bash", "zsh" },
+			}
+		else
+			lspconfig[servers[index]].setup {
+				capabilities = capabilities,
+			}
+		end
 	end
 end
 
