@@ -1,3 +1,7 @@
+function Is_executable_in_path(executable)
+	return vim.fn.executable(executable) == 1
+end
+
 -- helper to cycle through the argument list
 function Cycle_arg_list()
 	if vim.fn.argc() <= 1 then

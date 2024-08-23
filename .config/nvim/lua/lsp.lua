@@ -14,13 +14,9 @@ local rust_analyzer_settings = {
 	}
 }
 
-local function is_executable_in_path(executable)
-	return vim.fn.executable(executable) == 1
-end
-
 -- only setup LSP if it is in PATH
 for index, lsp in ipairs(servers_in_path) do
-	if is_executable_in_path(lsp) then
+	if Is_executable_in_path(lsp) then
 		if lsp == "rust-analyzer" then
 			lspconfig[servers[index]].setup {
 				capabilities = capabilities,
