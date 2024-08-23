@@ -57,6 +57,7 @@ cmp.setup {
 				fallback()
 			end
 		end, { 'i', 's' }),
+		-- Shift + Tab
 		["S-TAB"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
