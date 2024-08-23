@@ -20,7 +20,6 @@ for index, lsp in ipairs(servers_in_path) do
 		if lsp == "rust-analyzer" then
 			lspconfig[servers[index]].setup {
 				capabilities = capabilities,
-				on_attach = on_attach,
 				settings = rust_analyzer_settings,
 			}
 		elseif lsp == "bash-language-server" then
