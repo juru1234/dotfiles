@@ -6,22 +6,19 @@ local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'b
 local servers_in_path = { 'clangd', 'rust-analyzer', 'pyright', 'tsserver', 'lua-language-server',
 	'bash-language-server' }
 
--- enable clippy for rust-analyzer
-local rust_analyzer_settings = {
-	["rust-analyzer"] = {
-		check = {
-			command = "clippy",
-		},
-	}
-}
-
 -- only setup LSP if it is in PATH
 for index, lsp in ipairs(servers_in_path) do
 	if Is_executable_in_path(lsp) then
 		if lsp == "rust-analyzer" then
 			lspconfig[servers[index]].setup {
 				capabilities = capabilities,
-				settings = rust_analyzer_settings,
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							command = "clippy",
+						},
+					},
+				},
 			}
 		elseif lsp == "bash-language-server" then
 			lspconfig[servers[index]].setup {
