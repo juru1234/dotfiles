@@ -2,21 +2,22 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lspconfig = require('lspconfig')
 
--- The language servers must be at the same position in 'servers' and
--- 'servers_in_path'
--- Look at
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
--- for the names required for the 'servers' array
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'bashls' }
--- Names of the actual language server executables in $PATH
-local servers_in_path = { 'clangd', 'rust-analyzer', 'pyright', 'tsserver', 'lua-language-server',
-	'bash-language-server' }
+-- name: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- executable: name of the language server executable in $PATH
+local servers = {
+	{ name = 'clangd',        executable = 'clangd' },
+	{ name = 'rust_analyzer', executable = 'rust-analyzer' },
+	{ name = 'pyright',       executable = 'pyright' },
+	{ name = 'tsserver',      executable = 'tsserver' },
+	{ name = 'lua_ls',        executable = 'lua-language-server' },
+	{ name = 'bashls',        executable = 'bash-language-server' }
+}
 
--- only setup LSP if it is in PATH
-for index, lsp in ipairs(servers_in_path) do
-	if Is_executable_in_path(lsp) then
-		if lsp == "rust-analyzer" then
-			lspconfig[servers[index]].setup {
+-- only set up LSP if it exists in $PATH
+for _, server in ipairs(servers) do
+	if Is_executable_in_path(server.executable) then
+		if server.name == "rust_analyzer" then
+			lspconfig[server.name].setup {
 				capabilities = capabilities,
 				settings = {
 					["rust-analyzer"] = {
@@ -26,13 +27,13 @@ for index, lsp in ipairs(servers_in_path) do
 					},
 				},
 			}
-		elseif lsp == "bash-language-server" then
-			lspconfig[servers[index]].setup {
+		elseif server.name == "bashls" then
+			lspconfig[server.name].setup {
 				capabilities = capabilities,
 				filetypes = { "sh", "bash", "zsh" },
 			}
 		else
-			lspconfig[servers[index]].setup {
+			lspconfig[server.name].setup {
 				capabilities = capabilities,
 			}
 		end
