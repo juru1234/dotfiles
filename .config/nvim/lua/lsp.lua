@@ -2,7 +2,13 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lspconfig = require('lspconfig')
 
+-- The language servers must be at the same position in 'servers' and
+-- 'servers_in_path'
+-- Look at
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- for the names required for the 'servers' array
 local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'lua_ls', 'bashls' }
+-- Names of the actual language server executables in $PATH
 local servers_in_path = { 'clangd', 'rust-analyzer', 'pyright', 'tsserver', 'lua-language-server',
 	'bash-language-server' }
 
