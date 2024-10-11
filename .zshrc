@@ -105,8 +105,9 @@ eval "$(zoxide init zsh)"
 z "$@"
 }
 
+# This fixes SSH agent forwarding togehter with
+# $HOME/.ssh/config
 STABLE_SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
-# Fix SSH auth socket location so agent forwarding works
 if [ ! -S "${STABLE_SSH_AUTH_SOCK}" ] && [ -S "${SSH_AUTH_SOCK-}" ]; then
   ln -sf -- "$SSH_AUTH_SOCK" "${STABLE_SSH_AUTH_SOCK}"
 fi
