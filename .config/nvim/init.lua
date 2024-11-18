@@ -9,6 +9,9 @@ vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
 vim.cmd('colorscheme gruvbox')
 
 -- Use osc52 as clipboard provider
+local function paste()
+  return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+end
 vim.g.clipboard = {
 	name = 'OSC 52',
 	copy = {
@@ -16,8 +19,8 @@ vim.g.clipboard = {
 		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
 	},
 	paste = {
-		['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+		['+'] = paste,
+		['*'] = paste,
 	},
 }
 -- To ALWAYS use the clipboard for ALL operations
