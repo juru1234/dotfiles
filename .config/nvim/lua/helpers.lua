@@ -34,7 +34,18 @@ vim.api.nvim_create_user_command(
 	{ nargs = '?' }
 )
 
+-- helper to act as a pager
+-- e.g. git grep --color=always foo | nvim +Pager
+vim.api.nvim_create_user_command("Pager", function(args)
+    local buf = vim.api.nvim_get_current_buf()
+    local b = vim.api.nvim_create_buf(false, true)
+    local chan = vim.api.nvim_open_term(b, {})
+    vim.api.nvim_chan_send(chan, table.concat(vim.api.nvim_buf_get_lines(buf, 0, -1, false), "\n"))
+    vim.api.nvim_win_set_buf(0, b)
+end, {})
+
 -- helper to use nvim for composing mails
+-- start e.g. nvim in mutt with nvim +EditMail
 vim.api.nvim_create_user_command("EditMail", function(args)
 	-- Get the current buffer and its lines
 	local buf = vim.api.nvim_get_current_buf()
