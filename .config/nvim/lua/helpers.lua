@@ -37,9 +37,17 @@ vim.api.nvim_create_user_command(
 -- helper to act as a pager
 -- git grep --color=always foo | nvim +Term
 vim.api.nvim_create_user_command("Term", function(args)
-    local buf = vim.api.nvim_get_current_buf()
-    local b = vim.api.nvim_create_buf(false, true)
-    local chan = vim.api.nvim_open_term(b, {})
-    vim.api.nvim_chan_send(chan, table.concat(vim.api.nvim_buf_get_lines(buf, 0, -1, false), "\n"))
-    vim.api.nvim_win_set_buf(0, b)
+	local buf = vim.api.nvim_get_current_buf()
+	local b = vim.api.nvim_create_buf(false, true)
+	local chan = vim.api.nvim_open_term(b, {})
+	vim.api.nvim_chan_send(chan, table.concat(vim.api.nvim_buf_get_lines(buf, 0, -1, false), "\n"))
+	vim.api.nvim_win_set_buf(0, b)
+
+	vim.api.nvim_set_hl(0, 'quotedDeletion', { fg = 'red' })
+	vim.api.nvim_set_hl(0, 'quotedAddition', { fg = 'green' })
+	vim.api.nvim_set_hl(0, 'quote', { fg = 'white' })
+
+	vim.api.nvim_command('syntax match quote "^>* "')
+	vim.api.nvim_command('syntax match quotedDeletion "^>* *-.*" contains=quote')
+	vim.api.nvim_command('syntax match quotedAddition "^>* *+.*" contains=quote')
 end, {})
