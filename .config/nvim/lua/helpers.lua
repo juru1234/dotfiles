@@ -34,15 +34,19 @@ vim.api.nvim_create_user_command(
 	{ nargs = '?' }
 )
 
--- helper to act as a pager
--- git grep --color=always foo | nvim +Term
-vim.api.nvim_create_user_command("Term", function(args)
+-- helper to use nvim for composing mails
+vim.api.nvim_create_user_command("EditMail", function(args)
+	-- Get the current buffer and its lines
 	local buf = vim.api.nvim_get_current_buf()
-	local b = vim.api.nvim_create_buf(false, true)
-	local chan = vim.api.nvim_open_term(b, {})
-	vim.api.nvim_chan_send(chan, table.concat(vim.api.nvim_buf_get_lines(buf, 0, -1, false), "\n"))
-	vim.api.nvim_win_set_buf(0, b)
+	local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 
+	-- Create a new buffer that allows editing
+	local b = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(b, 0, -1, false, lines)
+	vim.api.nvim_win_set_buf(0, b)
+	vim.cmd('setlocal modifiable')
+
+	-- Handle >
 	vim.api.nvim_set_hl(0, 'quotedDeletion', { fg = 'red' })
 	vim.api.nvim_set_hl(0, 'quotedAddition', { fg = 'green' })
 	vim.api.nvim_set_hl(0, 'quote', { fg = 'white' })
