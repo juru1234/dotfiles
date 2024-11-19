@@ -57,7 +57,6 @@ vim.api.nvim_create_user_command("EditMail", function(args)
 	-- Delete the current buffer
 	vim.api.nvim_buf_delete(buf, { force = true })
 
-	-- Create a new buffer with the content from the previous buffer
 	local new_buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, lines)
 
@@ -81,4 +80,7 @@ vim.api.nvim_create_user_command("EditMail", function(args)
 	vim.api.nvim_command('syntax match quote "^>\\( \\?>\\)* "')
 	vim.api.nvim_command('syntax match quotedDeletion "^>\\( \\?>\\)* *-.*" contains=quote')
 	vim.api.nvim_command('syntax match quotedAddition "^>\\( \\?>\\)* *+.*" contains=quote')
+
+	-- get rid of file exists warning when wq
+	vim.api.nvim_command('w!')
 end, {})
