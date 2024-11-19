@@ -58,8 +58,10 @@ vim.api.nvim_create_user_command("EditMail", function(args)
 	vim.cmd('setlocal modifiable')
 
 	-- Handle one or multiple >
-	vim.api.nvim_set_hl(0, 'quotedDeletion', { fg = 'red' })
-	vim.api.nvim_set_hl(0, 'quotedAddition', { fg = 'green' })
+	-- gruvbox red
+	vim.api.nvim_set_hl(0, 'quotedDeletion', { fg = '#fb4934' })
+	-- gruvbox green
+	vim.api.nvim_set_hl(0, 'quotedAddition', { fg = '#b8bb26' })
 	vim.api.nvim_set_hl(0, 'quote', { fg = 'white' })
 
 	vim.api.nvim_command('syntax match quote "^>\\( \\?>\\)* "')
