@@ -51,11 +51,25 @@ vim.api.nvim_create_user_command("EditMail", function(args)
 	local buf = vim.api.nvim_get_current_buf()
 	local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 
-	-- Create a new buffer that allows editing
-	local b = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_lines(b, 0, -1, false, lines)
-	vim.api.nvim_win_set_buf(0, b)
-	vim.cmd('setlocal modifiable')
+	-- Get the filename of the current buffer
+	local filename = vim.api.nvim_buf_get_name(buf)
+
+	-- Delete the current buffer
+	vim.api.nvim_buf_delete(buf, { force = true })
+
+	-- Create a new buffer with the content from the previous buffer
+	local new_buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(new_buf, 0, -1, false, lines)
+
+	-- Set the new buffer to the filename of the old one
+	vim.api.nvim_buf_set_name(new_buf, filename)
+
+	-- Set the new buffer to be editable
+	vim.api.nvim_buf_set_option(new_buf, 'buftype', '')
+	vim.api.nvim_buf_set_option(new_buf, 'modifiable', true)
+
+	-- Switch to the new buffer
+	vim.api.nvim_win_set_buf(0, new_buf)
 
 	-- Handle one or multiple >
 	-- gruvbox red
