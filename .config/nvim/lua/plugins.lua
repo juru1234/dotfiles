@@ -17,6 +17,7 @@ Plug 'tpope/vim-obsession'
 Plug 'airblade/vim-gitgutter'
 Plug 'takac/vim-hardtime'
 Plug 'morhetz/gruvbox'
+Plug 'lervag/vimtex'
 -- neovim plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'

@@ -50,6 +50,16 @@ vim.keymap.set('n', 's', function()
 	require('leap').leap { target_windows = { vim.api.nvim_get_current_win() } }
 end)
 
+-- vimtex
+vim.g.vimtex_view_general_viewer='okular'
+vim.g.vimtex_compiler_latexmk = {
+  build_dir = '', -- Specify the build directory if needed
+  callback = 1, -- Enable the callback function
+  continuous = 1, -- Disable continuous mode (for single builds)
+  executable = 'latexmk', -- Use 'make' as the build command
+  options = {}, -- Additional options (leave empty for default)
+}
+
 -- hardtime
 vim.cmd("let g:hardtime_timeout = 300")
 vim.cmd("let g:hardtime_default_on = 1")
