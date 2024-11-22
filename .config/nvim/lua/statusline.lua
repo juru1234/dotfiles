@@ -13,15 +13,39 @@ local function lsp_status()
 end
 
 local function git_branch()
-    -- Using 'git rev-parse --abbrev-ref HEAD' to get the current branch name
+    local is_git_repo = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null"):gsub("%s+", "") == "true"
+    if not is_git_repo then
+        return ""
+    end
+
     local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
-    return vim.fn.trim(branch) -- trim any extra whitespace
+    return vim.fn.trim(branch)
+end
+
+-- Function to get the count of LSP warnings and errors
+local function lsp_diagnostics()
+    local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+    local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+
+    local diagnostic_str = ""
+
+    if errors > 0 then
+        diagnostic_str = diagnostic_str .. "E" .. errors .. " " -- Red for errors
+    end
+    if warnings > 0 then
+        diagnostic_str = diagnostic_str .. "W" .. warnings .. " " -- Yellow for warnings
+    end
+
+    return vim.fn.trim(diagnostic_str)
 end
 
 function _G.statusline()
     return table.concat({
         "%f",                -- File name
         "%h%w%m%r",          -- File status
+        lsp_diagnostics() ~= "" and "|" or "",
+        lsp_diagnostics(),   -- LSP Errors/Warnings
+        git_branch() ~= "" and "|" or "",
         git_branch(),        -- Git branch
         "%=",                -- Align right
         lsp_status(),        -- LSP clients
