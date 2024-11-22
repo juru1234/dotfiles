@@ -1,6 +1,7 @@
 require('helpers')
 require('plugins')
 require('keymaps')
+require('statusline')
 require('lsp')
 
 -- Use the gruvbox color scheme
@@ -27,22 +28,8 @@ vim.g.clipboard = {
 -- (instead of interacting with the "+" and/or "*" registers explicitly):
 vim.opt.clipboard = "unnamedplus"
 
--- Show the status of the LSP bottom right
-require "fidget".setup()
 -- file explorer
 require("oil").setup()
--- statusline
-require('lualine').setup {
-	options = {
-		icons_enabled = false,
-		theme = 'gruvbox',
-		component_separators = '|',
-		section_separators = '',
-	},
-	sections = {
-		lualine_c = { { 'filename', path = 1 } },
-	},
-}
 
 -- fast motions
 require('leap').create_default_mappings()
