@@ -4,12 +4,26 @@ local function lsp_status()
         return ""
     end
     local it = vim.iter(attached_clients)
-    it:map(function (client)
+    it:map(function(client)
         local name = client.name:gsub("language.server", "ls")
         return name
     end)
     local names = it:totable()
     return "[" .. table.concat(names, ", ") .. "]"
+end
+
+local function file_status()
+    local status = ""
+    if vim.bo.readonly then
+        status = status .. "[RO]"
+    end
+    if vim.bo.modifiable == false then
+        status = status .. "[NM]"
+    end
+    if vim.bo.modified then
+        status = status .. "[+]"
+    end
+    return status
 end
 
 local function git_branch()
@@ -30,28 +44,38 @@ local function lsp_diagnostics()
     local diagnostic_str = ""
 
     if errors > 0 then
-        diagnostic_str = diagnostic_str .. "E" .. errors .. " " -- Red for errors
+        diagnostic_str = diagnostic_str .. "E:" .. errors .. " "
     end
     if warnings > 0 then
-        diagnostic_str = diagnostic_str .. "W" .. warnings .. " " -- Yellow for warnings
+        diagnostic_str = diagnostic_str .. "W:" .. warnings .. " "
     end
 
     return vim.fn.trim(diagnostic_str)
 end
 
 function _G.statusline()
-    return table.concat({
-        "%f",                -- File name
-        "%h%w%m%r",          -- File status
-        lsp_diagnostics() ~= "" and "|" or "",
-        lsp_diagnostics(),   -- LSP Errors/Warnings
-        git_branch() ~= "" and "|" or "",
-        git_branch(),        -- Git branch
-        "%=",                -- Align right
-        lsp_status(),        -- LSP clients
-        " %-14(%l,%c%V%)",    -- Line and column number
-        "%P",                -- Percentage through file
-    }, " ")
+    local components = {
+        "%f",              -- File name
+        file_status(),     -- File status
+        (lsp_diagnostics() ~= "" and "|" or ""),
+        lsp_diagnostics(), -- LSP diagnostics
+        (git_branch() ~= "" and "|" or ""),
+        git_branch(),      -- Git branch
+        "%=",              -- Align right
+        lsp_status(),      -- LSP clients
+        " %-14(%l,%c%V%)", -- Line and column number
+        "%P",              -- Percentage through file
+    }
+
+    -- Filter out components that are empty strings
+    local filtered_components = {}
+    for _, component in ipairs(components) do
+        if component and component ~= "" then
+            table.insert(filtered_components, component)
+        end
+    end
+
+    return table.concat(filtered_components, " ")
 end
 
 vim.o.statusline = "%{%v:lua._G.statusline()%}"
