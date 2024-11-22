@@ -12,14 +12,21 @@ local function lsp_status()
     return "[" .. table.concat(names, ", ") .. "]"
 end
 
+local function git_branch()
+    -- Using 'git rev-parse --abbrev-ref HEAD' to get the current branch name
+    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
+    return vim.fn.trim(branch) -- trim any extra whitespace
+end
+
 function _G.statusline()
     return table.concat({
-        "%f",
-        "%h%w%m%r",
-        "%=",
-        lsp_status(),
-        " %-14(%l,%c%V%)",
-        "%P",
+        "%f",                -- File name
+        "%h%w%m%r",          -- File status
+        git_branch(),        -- Git branch
+        "%=",                -- Align right
+        lsp_status(),        -- LSP clients
+        " %-14(%l,%c%V%)",    -- Line and column number
+        "%P",                -- Percentage through file
     }, " ")
 end
 
