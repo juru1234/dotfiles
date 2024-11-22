@@ -3,6 +3,7 @@ require('plugins')
 require('keymaps')
 require('statusline')
 require('lsp')
+require('options')
 
 -- Use the gruvbox color scheme
 vim.cmd("let g:gruvbox_transparent_bg = 1")
@@ -59,10 +60,3 @@ vim.cmd(':autocmd FileType c :iabbrev <buffer> pr@ pr_info("%s:\\n", __func__);<
 vim.cmd('autocmd BufEnter,BufNew term://* startinsert')
 vim.cmd('autocmd BufEnter,BufNew term://* set laststatus=0')
 vim.cmd('autocmd TermOpen * setlocal nonumber norelativenumber nobuflisted')
-
-vim.cmd('set shell=/usr/bin/zsh')
-vim.cmd('set list')
-vim.cmd('set listchars=tab:*\\ ,eol:¬,trail:~')
-vim.cmd('set cmdheight=1')
-vim.wo.number = true
-vim.wo.relativenumber = true
