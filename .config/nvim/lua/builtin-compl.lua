@@ -52,34 +52,6 @@ M.setup = function(ev)
             end
         end
     end, 'Trigger/select next completion', 'i')
-
-    -- Buffer completions.
-    keymap('<C-u>', '<C-x><C-n>', { desc = 'Buffer completions' }, 'i')
-
-    -- Use <Tab> to accept a Copilot suggestion, navigate between snippet tabstops,
-    -- or select the next completion.
-    -- Do something similar with <S-Tab>.
-    keymap('<Tab>', function()
-        if pumvisible() then
-            feedkeys '<C-n>'
-        elseif vim.snippet.active { direction = 1 } then
-            vim.snippet.jump(1)
-        else
-            feedkeys '<Tab>'
-        end
-    end, {}, { 'i', 's' })
-    keymap('<S-Tab>', function()
-        if pumvisible() then
-            feedkeys '<C-p>'
-        elseif vim.snippet.active { direction = -1 } then
-            vim.snippet.jump(-1)
-        else
-            feedkeys '<S-Tab>'
-        end
-    end, {}, { 'i', 's' })
-
-    -- Inside a snippet, use backspace to remove the placeholder.
-    keymap('<BS>', '<C-o>s', {}, 's')
 end
 
 return M
