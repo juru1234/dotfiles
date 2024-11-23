@@ -8,6 +8,7 @@ require('plugins')
 require('keymaps')
 require('statusline')
 require('lsp')
+require('snippet')
 require('options')
 
 -- Use the gruvbox color scheme

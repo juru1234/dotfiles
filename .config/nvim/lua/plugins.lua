@@ -20,8 +20,6 @@ Plug 'morhetz/gruvbox'
 Plug 'lervag/vimtex'
 -- neovim plugins
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
 Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/oil.nvim'
