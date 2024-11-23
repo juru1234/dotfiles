@@ -53,6 +53,27 @@ local function lsp_diagnostics()
     return vim.fn.trim(diagnostic_str)
 end
 
+-- LSP indexing
+local indexing_status = ""
+
+vim.lsp.handlers["$/progress"] = function(_, result, ctx)
+    local client_id = ctx.client_id
+    local client = vim.lsp.get_client_by_id(client_id)
+    if not client then return end
+
+    if result.value.kind == "begin" then
+        indexing_status = "Indexing..."
+    elseif result.value.kind == "end" then
+        indexing_status = ""
+    end
+    vim.cmd("redrawstatus")
+end
+
+local function lsp_indexing()
+    return indexing_status
+end
+
+
 function _G.statusline()
     local components = {
         "%f",              -- File name
@@ -63,6 +84,8 @@ function _G.statusline()
         git_branch(),      -- Git branch
         "%=",              -- Align right
         lsp_status(),      -- LSP clients
+        (lsp_indexing() ~= "" and "|" or ""),
+        lsp_indexing(),    -- LSP indexing status
         " %-14(%l,%c%V%)", -- Line and column number
         "%P",              -- Percentage through file
     }
