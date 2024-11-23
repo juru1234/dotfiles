@@ -73,6 +73,9 @@ local function lsp_indexing()
     return indexing_status
 end
 
+local function file_type()
+    return vim.bo.filetype ~= "" and vim.bo.filetype or "none"
+end
 
 function _G.statusline()
     local components = {
@@ -86,6 +89,8 @@ function _G.statusline()
         lsp_status(),      -- LSP clients
         (lsp_indexing() ~= "" and "|" or ""),
         lsp_indexing(),    -- LSP indexing status
+        (file_type() ~= "none" and "|" or ""),
+        file_type(),       -- File type
         " %-14(%l,%c%V%)", -- Line and column number
         "%P",              -- Percentage through file
     }
