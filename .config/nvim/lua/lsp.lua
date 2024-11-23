@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.buf.format { async = true }
         end, opts)
 
-        vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, { autotrigger = false })
-        vim.keymap.set('i', '<C-space>', vim.lsp.completion.trigger, opts)
+        require('builtin-compl').setup(ev)
     end,
+
 })
