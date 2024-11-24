@@ -1,3 +1,7 @@
+-- Snippets need to be placed in:
+-- after/ftplugin/"language".lua
+-- Trigger key: <c-]>
+
 function vim.snippet.add(trigger, body, opts)
     vim.keymap.set("ia", trigger, function()
         -- If abbrev is expanded with keys like "(", ")", "<cr>", "<space>",
