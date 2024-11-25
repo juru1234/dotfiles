@@ -27,22 +27,9 @@ local function file_status()
 end
 
 local function git_branch()
-    -- Check if we're inside a Git repository
-    local handle = io.popen("git rev-parse --is-inside-work-tree 2>/dev/null")
-    local result = handle and handle:read("*a")
-    if handle then handle:close() end
-
-    if result == nil or result:gsub("%s+", "") ~= "true" then
-        return ""
-    end
-
-    -- Get the current branch or commit hash
-    local branch_handle = io.popen("git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null")
-    local branch = branch_handle and branch_handle:read("*a")
-    if branch_handle then branch_handle:close() end
-
-    -- Trim and return branch or commit hash
-    return branch and vim.fn.trim(branch) or ""
+    local branch = io.popen("git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null"):read(
+    "*a")
+    return branch and branch:match("^%s*(.-)%s*$") or ""
 end
 
 -- Function to get the count of LSP warnings and errors
