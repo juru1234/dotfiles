@@ -27,13 +27,22 @@ local function file_status()
 end
 
 local function git_branch()
-    local is_git_repo = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null"):gsub("%s+", "") == "true"
-    if not is_git_repo then
+    -- Check if we're inside a Git repository
+    local handle = io.popen("git rev-parse --is-inside-work-tree 2>/dev/null")
+    local result = handle and handle:read("*a")
+    if handle then handle:close() end
+
+    if result == nil or result:gsub("%s+", "") ~= "true" then
         return ""
     end
 
-    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
-    return vim.fn.trim(branch)
+    -- Get the current branch or commit hash
+    local branch_handle = io.popen("git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null")
+    local branch = branch_handle and branch_handle:read("*a")
+    if branch_handle then branch_handle:close() end
+
+    -- Trim and return branch or commit hash
+    return branch and vim.fn.trim(branch) or ""
 end
 
 -- Function to get the count of LSP warnings and errors
@@ -55,7 +64,7 @@ end
 
 -- LSP indexing
 local indexing_status = ""
-
+local debounce_timer = nil
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
     local client_id = ctx.client_id
     local client = vim.lsp.get_client_by_id(client_id)
@@ -63,10 +72,16 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
 
     if result.value.kind == "begin" then
         indexing_status = "Indexing..."
+        if debounce_timer then
+            debounce_timer:stop()
+        end
     elseif result.value.kind == "end" then
         indexing_status = ""
+        -- Optional: set a small delay before updating statusline again
+        debounce_timer = vim.defer_fn(function()
+            vim.cmd("redrawstatus")
+        end, 500)
     end
-    vim.cmd("redrawstatus")
 end
 
 local function lsp_indexing()
