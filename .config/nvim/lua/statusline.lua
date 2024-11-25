@@ -27,12 +27,14 @@ local function file_status()
 end
 
 local function git_branch()
-    local branch = io.popen("git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null"):read(
-    "*a")
+    local branch = io.popen(
+        "git symbolic-ref --short HEAD 2>/dev/null || " ..
+        "git rev-parse --short HEAD 2>/dev/null"
+    ):read("*a")
     return branch and branch:match("^%s*(.-)%s*$") or ""
 end
 
--- Function to get the count of LSP warnings and errors
+-- Get the count of LSP warnings and errors
 local function lsp_diagnostics()
     local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
     local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -64,7 +66,6 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
         end
     elseif result.value.kind == "end" then
         indexing_status = ""
-        -- Optional: set a small delay before updating statusline again
         debounce_timer = vim.defer_fn(function()
             vim.cmd("redrawstatus")
         end, 500)
