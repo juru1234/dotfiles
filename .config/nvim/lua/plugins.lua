@@ -22,8 +22,6 @@ Plug 'lervag/vimtex'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'j-hui/fidget.nvim'
-Plug 'nvim-lualine/lualine.nvim'
 Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/oil.nvim'
