@@ -6,7 +6,7 @@ end
 require('helpers')
 require('plugins')
 require('keymaps')
-require('statusline')
+-- require('statusline')
 require('lsp')
 require('options')
 
