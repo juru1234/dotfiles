@@ -18,15 +18,15 @@
 
 "modules-right": [
 			//"tray",
-                    	"pulseaudio", 
-			"pulseaudio#source",
-                    	"network", 
-                    	"bluetooth",
-                    	"cpu", 
-                    	"memory", 
-                    	//"temperature", 
-                    	"battery",
-                    	"clock"
+            "pulseaudio",
+            "pulseaudio#source",
+            "network",
+            "bluetooth",
+            //"cpu",
+            //"memory",
+            //"temperature",
+            "battery",
+            "clock"
 ],
  
 }]

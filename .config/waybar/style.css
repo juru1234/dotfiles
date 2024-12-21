@@ -39,12 +39,14 @@ window#waybar {
 }
 
 #idle_inhibitor{ 
+	background-color: @maroon;
+	color: @base;
 	padding: 1px 0px; 
 }
 
 #idle_inhibitor.activated{ 
-	/*background-color: #d4be98;*/
-	/*color: #1b1b1b;*/
+	background-color: @maroon;
+	color: @base;
 }
 
 /* sway/scratchpad */
@@ -56,9 +58,14 @@ window#waybar {
 
 /* sway/workspaces */
 #workspaces {
+    border-radius: 1rem;
+    margin: 5px;
+    /*background-color: @surface0;*/
+    /*margin-left: 1rem;*/
 }
 
 #workspaces button:hover {
+    border-radius: 1rem;
 	background: @base;
 }
 
@@ -71,7 +78,8 @@ window#waybar {
 /*}*/
 
 #workspaces button.focused {
-	background-color: @surface0;
+    border-radius: 1rem;
+	background-color: @surface2;
 }
 
 #workspaces button.urgent {
@@ -199,6 +207,6 @@ window#waybar {
 }
 
 #clock { 
-	/*background-color: shade(@base, 0.9);;*/
-	/*color: @text;*/
+	background-color: @maroon;
+	color: @base;
 }
