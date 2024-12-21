@@ -16,7 +16,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'airblade/vim-gitgutter'
 Plug 'takac/vim-hardtime'
-Plug 'morhetz/gruvbox'
 Plug 'lervag/vimtex'
 -- neovim plugins
 Plug 'neovim/nvim-lspconfig'
@@ -27,4 +26,5 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/oil.nvim'
+Plug('catppuccin/nvim', { as =  'catppuccin' })
 vim.call('plug#end')

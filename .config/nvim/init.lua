@@ -10,10 +10,7 @@ require('keymaps')
 require('lsp')
 require('options')
 
--- Use the gruvbox color scheme
-vim.cmd("let g:gruvbox_transparent_bg = 1")
-vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
-vim.cmd('colorscheme gruvbox')
+vim.cmd.colorscheme "catppuccin-mocha"
 
 -- Use osc52 as clipboard provider
 local function paste()
@@ -42,7 +39,7 @@ require("oil").setup()
 require('lualine').setup {
 	options = {
 		icons_enabled = false,
-		theme = 'gruvbox',
+		theme = 'catppuccin',
 		component_separators = '|',
 		section_separators = '',
 	},
