@@ -202,7 +202,7 @@ bar {
 bindsym $mod+Shift+a exec ~/.config/sway/screenlock
 
 # Suspend
-bindsym $mod+Shift+s exec systemctl suspend
+bindsym $mod+Shift+s exec ~/.config/sway/screenlock_and_suspend
 
 #Screenshot
 bindsym $mod+Shift+z exec slurp | grim -g - - | wl-copy
