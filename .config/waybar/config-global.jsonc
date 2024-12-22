@@ -169,7 +169,7 @@
     "format": "{volume}",
     "format-source": "",
     "format-source-muted": "",
-    "on-click": "pactl set-source-mute 0 1",
+    "on-click": "pactl set-source-mute 0 toggle",
     "on-click-right": "alacritty pulsemixer",
     "tooltip": false
   },
