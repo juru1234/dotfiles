@@ -1,0 +1,8 @@
+exec alacritty && sway '[app_id="alacritty"]' move container to workspace 1
+assign [app_id="firefox"] 2
+exec MOZ_ENABLE_WAYLAND=1 firefox
+
+exec swayidle -w \
+   timeout 880 'swaylock -f -c 000000' \
+   before-sleep 'swaylock -c 000000'
+   #timeout 10800 'systemctl suspend' \
