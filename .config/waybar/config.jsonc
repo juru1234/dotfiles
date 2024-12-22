@@ -1,0 +1,18 @@
+{
+  "include": "~/.config/waybar/config-global.jsonc",
+  "position": "left",
+  "modules-left": [
+    "idle_inhibitor",
+    "sway/scratchpad",
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "pulseaudio#source",
+    "network",
+    "bluetooth",
+    "battery",
+    "clock"
+  ]
+}
