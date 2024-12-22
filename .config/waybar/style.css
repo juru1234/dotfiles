@@ -39,13 +39,13 @@ window#waybar {
 }
 
 #idle_inhibitor{ 
-	background-color: @maroon;
+	background-color: @mauve;
 	color: @base;
 	padding: 1px 0px; 
 }
 
 #idle_inhibitor.activated{ 
-	background-color: @maroon;
+	background-color: @peach;
 	color: @base;
 }
 
@@ -207,6 +207,6 @@ window#waybar {
 }
 
 #clock { 
-	background-color: @maroon;
+	background-color: @mauve;
 	color: @base;
 }
