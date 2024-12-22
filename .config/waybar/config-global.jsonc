@@ -18,8 +18,8 @@
       "󱩖",
       "󰛨"
     ],
-    "on-scroll-down": "brightnessctl set 1%- && $HOME/.scripts/progressbar.sh --brightness",
-    "on-scroll-up": "brightnessctl set +1% && $HOME/.scripts/progressbar.sh --brightness",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "on-scroll-up": "brightnessctl set +1%",
     "tooltip": false
   },
   "battery": {
@@ -158,10 +158,10 @@
       "hifi": "noname6",
       "phone": "noname7"
     },
-    "on-click": "pactl set-sink-mute 0 toggle && $HOME/.scripts/progressbar.sh --volume-mute",
+    "on-click": "pactl set-sink-mute 0 toggle",
     "on-click-right": "alacritty pulsemixer",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1% && $HOME/.scripts/progressbar.sh --volume",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1% && $HOME/.scripts/progressbar.sh --volume",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
     "tooltip": true,
     "tooltip-format": "Volume: {volume}%\n{desc}"
   },
@@ -169,10 +169,8 @@
     "format": "{volume}",
     "format-source": "",
     "format-source-muted": "",
-    "on-click": "pactl set-source-mute 0 1 && $HOME/.scripts/progressbar.sh --mic-mute",
+    "on-click": "pactl set-source-mute 0 1",
     "on-click-right": "alacritty pulsemixer",
-    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1% && $HOME/.scripts/progressbar.sh --mic-volume",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1% && $HOME/.scripts/progressbar.sh --mic-volume",
     "tooltip": false
   },
   "sway/mode": {
