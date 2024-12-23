@@ -149,7 +149,8 @@ window#waybar {
 }
 
 #network {
-	padding: 2px 0px;
+        padding: 2px 0px;
+        margin-right: 0.3rem;
 }
 
 #network.disconnected {
