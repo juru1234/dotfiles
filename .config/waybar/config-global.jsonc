@@ -130,8 +130,8 @@
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "󰖁",
-    "format-bluetooth": "󰗾name subjecto to check",
-    "format-bluetooth-muted": "󰗿 name subject to check",
+    "format-bluetooth": "󰗾",
+    "format-bluetooth-muted": "󰗿",
     "format-icons": {
       "default": [
         "󰕿",
