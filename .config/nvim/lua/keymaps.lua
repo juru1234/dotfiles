@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.keymap.set("n", "<leader>f", require('fzf-lua').files, { desc = "Fzf Files" })
-vim.keymap.set("n", "<leader>g", require('fzf-lua').grep_visual, { desc = "Fzf Grep" })
+vim.keymap.set("n", "<leader>g", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
 vim.keymap.set("n", "<leader>b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
 vim.keymap.set("n", "<leader>a", require('fzf-lua').args, { desc = "Fzf Arguments" })
 vim.keymap.set("n", "<leader>d", require('fzf-lua').diagnostics_document, { desc = "Fzf Diagnostics" })
