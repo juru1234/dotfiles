@@ -142,6 +142,9 @@ vim.keymap.set("n", "hu", "<Plug>(GitGutterUndoHunk)")
 vim.keymap.set("n", "hn", "<Plug>(GitGutterNextHunk)")
 vim.keymap.set("n", "hp", "<Plug>(GitGutterPrevHunk)")
 
+-- undotree
+vim.keymap.set('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
+
 vim.keymap.set('i', 'kj', "<Esc>")
 vim.keymap.set('v', 'kj', "<Esc>")
 

@@ -64,6 +64,8 @@ vim.g.vimtex_compiler_latexmk = {
   options = {}, -- Additional options (leave empty for default)
 }
 
+require('undotree').setup()
+
 -- hardtime
 vim.cmd("let g:hardtime_timeout = 300")
 vim.cmd("let g:hardtime_default_on = 1")
