@@ -125,7 +125,7 @@ vim.keymap.set("n", "<leader>d", require('fzf-lua').diagnostics_document, { desc
 vim.keymap.set("n", "<leader>r", require('fzf-lua').lsp_references, { desc = "Fzf References" })
 vim.keymap.set("n", "<leader>c", require('fzf-lua').lsp_code_actions, { desc = "Fzf Code Actions" })
 
---arglist
+-- arglist
 vim.keymap.set("n", "<Tab>", Cycle_arg_list)
 vim.keymap.set("n", "<Leader>aa", ":ArgAdd<CR>")
 vim.keymap.set('n', '<Leader>ap', ':lua vim.cmd("ArgAdd " .. vim.fn.input("position (1..n): "))<CR>')
@@ -135,6 +135,12 @@ vim.keymap.set("n", "<Leader>3", ":$argu 3<CR>")
 vim.keymap.set("n", "<Leader>4", ":$argu 4<CR>")
 vim.keymap.set("n", "<Leader>5", ":$argu 5<CR>")
 vim.keymap.set("n", "<Leader>6", ":$argu 6<CR>")
+
+-- gitgutter
+vim.keymap.set("n", "hs", "<Plug>(GitGutterStageHunk)")
+vim.keymap.set("n", "hu", "<Plug>(GitGutterUndoHunk)")
+vim.keymap.set("n", "hn", "<Plug>(GitGutterNextHunk)")
+vim.keymap.set("n", "hp", "<Plug>(GitGutterPrevHunk)")
 
 vim.keymap.set('i', 'kj', "<Esc>")
 vim.keymap.set('v', 'kj', "<Esc>")
