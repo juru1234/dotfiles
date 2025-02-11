@@ -1,89 +1,55 @@
 local M = {}
 
------------------------------------------------------------
--- Define keymaps of Neovim and installed plugins.
------------------------------------------------------------
-
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
--- Change leader to a comma
 vim.g.mapleader = ','
 
------------------------------------------------------------
--- Neovim shortcuts
------------------------------------------------------------
-
 -- Disable arrow keys
-map('', '<up>', '<nop>')
-map('', '<down>', '<nop>')
-map('', '<left>', '<nop>')
-map('', '<right>', '<nop>')
-
--- Map Esc to kk
-map('i', 'kk', '<Esc>')
+vim.keymap.set('', '<up>', '<nop>')
+vim.keymap.set('', '<down>', '<nop>')
+vim.keymap.set('', '<left>', '<nop>')
+vim.keymap.set('', '<right>', '<nop>')
 
 -- Clear search highlighting with <leader> and c
-map('n', '<leader>c', ':nohl<CR>')
+vim.keymap.set('n', '<leader>c', ':nohl<CR>')
 
 -- Toggle auto-indenting for code paste
-map('n', '<F2>', ':set invpaste paste?<CR>')
+vim.keymap.set('n', '<F2>', ':set invpaste paste?<CR>')
 
 -- Change split orientation
-map('n', '<leader>tk', '<C-w>t<C-w>K') -- change vertical to horizontal
-map('n', '<leader>th', '<C-w>t<C-w>H') -- change horizontal to vertical
+vim.keymap.set('n', '<leader>tk', '<C-w>t<C-w>K') -- change vertical to horizontal
+vim.keymap.set('n', '<leader>th', '<C-w>t<C-w>H') -- change horizontal to vertical
 
 -- Move around splits using Ctrl + {h,j,k,l}
-map('n', '<C-left>', '<C-w>h')
-map('n', '<C-down>', '<C-w>j')
-map('n', '<C-up>', '<C-w>k')
-map('n', '<C-right>', '<C-w>l')
+vim.keymap.set('n', '<C-left>', '<C-w>h')
+vim.keymap.set('n', '<C-down>', '<C-w>j')
+vim.keymap.set('n', '<C-up>', '<C-w>k')
+vim.keymap.set('n', '<C-right>', '<C-w>l')
 
 -- Reload configuration without restart nvim
-map('n', '<leader>r', ':so %<CR>')
+vim.keymap.set('n', '<leader>r', ':so %<CR>')
 
 -- Fast saving with <leader> and s
-map('n', '<leader>s', ':w<CR>')
+vim.keymap.set('n', '<leader>s', ':w<CR>')
 
 -- Close all windows and exit from Neovim with <leader> and q
-map('n', '<leader>q', ':qa!<CR>')
+vim.keymap.set('n', '<leader>q', ':qa!<CR>')
 
 -----------------------------------------------------------
 -- Applications and Plugins shortcuts
 -----------------------------------------------------------
 
 -- Terminal mappings
-map('n', '<C-t>', ':Term<CR>', { noremap = true }) -- open
-map('t', '<Esc>', '<C-\\><C-n>')                   -- exit
-map('t', '<C-left>', '<C-\\><C-n><C-w>h')
-map('t', '<C-down>', '<C-\\><C-n><C-w>j')
-map('t', '<C-up>', '<C-\\><C-n><C-w>k')
-map('t', '<C-right>', '<C-\\><C-n><C-w>l')
+vim.keymap.set('n', '<C-t>', ':Term<CR>', { noremap = true }) -- open
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')                   -- exit
+vim.keymap.set('t', '<C-left>', '<C-\\><C-n><C-w>h')
+vim.keymap.set('t', '<C-down>', '<C-\\><C-n><C-w>j')
+vim.keymap.set('t', '<C-up>', '<C-\\><C-n><C-w>k')
+vim.keymap.set('t', '<C-right>', '<C-\\><C-n><C-w>l')
 
-
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
--- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<space>e', 'vim.diagnostic.open_float')
+vim.keymap.set('n', '[d', 'vim.diagnostic.goto_prev')
+vim.keymap.set('n', ']d', 'vim.diagnostic.goto_next')
+vim.keymap.set('n', '<space>q', 'vim.diagnostic.setloclist')
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -119,6 +85,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+-- fzf-lua
 vim.keymap.set("n", "<leader>f", require('fzf-lua').files, { desc = "Fzf Files" })
 vim.keymap.set("n", "<leader>g", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
 vim.keymap.set("n", "<leader>b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
@@ -141,6 +108,7 @@ vim.keymap.set("n", "<Leader>6", ":$argu 6<CR>")
 -- undotree
 vim.keymap.set('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
 
+-- hack for normal keybaords
 vim.keymap.set('i', 'kj', "<Esc>")
 vim.keymap.set('v', 'kj', "<Esc>")
 
@@ -152,51 +120,45 @@ vim.keymap.set('i', '\'\'', "\'\'<Left>")
 vim.keymap.set('i', '\"\"', "\"\"<Left>")
 vim.keymap.set('i', '``', "``<Left>")
 
--- GitSigns Keymaps
+-- gitsigns
 M.gitsigns_keymaps = function(bufnr)
     local gitsigns = require('gitsigns')
 
-    local function buf_map(mode, lhs, rhs, opts)
-        opts = opts or {}
-        opts.buffer = bufnr
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
-
     -- Actions
-    buf_map('n', 'hs', gitsigns.stage_hunk)
-    buf_map('n', 'hsu', gitsigns.undo_stage_hunk)
-    buf_map('n', 'hr', gitsigns.reset_hunk)
-    buf_map('n', 'hv', gitsigns.preview_hunk)
-    buf_map('n', 'hn', gitsigns.next_hunk)
-    buf_map('n', 'hp', gitsigns.prev_hunk)
+    vim.keymap.set('n', 'hs', gitsigns.stage_hunk)
+    vim.keymap.set('n', 'hsu', gitsigns.undo_stage_hunk)
+    vim.keymap.set('n', 'hr', gitsigns.reset_hunk)
+    vim.keymap.set('n', 'hv', gitsigns.preview_hunk)
+    vim.keymap.set('n', 'hn', gitsigns.next_hunk)
+    vim.keymap.set('n', 'hp', gitsigns.prev_hunk)
 
-    buf_map('v', '<leader>hs', function()
+    vim.keymap.set('v', '<leader>hs', function()
         gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
     end)
 
-    buf_map('v', '<leader>hr', function()
+    vim.keymap.set('v', '<leader>hr', function()
         gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
     end)
 
-    buf_map('n', '<leader>hS', gitsigns.stage_buffer)
-    buf_map('n', '<leader>hR', gitsigns.reset_buffer)
+    vim.keymap.set('n', '<leader>hS', gitsigns.stage_buffer)
+    vim.keymap.set('n', '<leader>hR', gitsigns.reset_buffer)
 
-    buf_map('n', '<leader>hb', function()
+    vim.keymap.set('n', '<leader>hb', function()
         gitsigns.blame_line({ full = true })
     end)
 
-    buf_map('n', '<leader>hd', gitsigns.diffthis)
-    buf_map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
-    buf_map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
-    buf_map('n', '<leader>hq', gitsigns.setqflist)
+    vim.keymap.set('n', '<leader>hd', gitsigns.diffthis)
+    vim.keymap.set('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+    vim.keymap.set('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+    vim.keymap.set('n', '<leader>hq', gitsigns.setqflist)
 
     -- Toggles
-    buf_map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
-    buf_map('n', '<leader>td', gitsigns.toggle_deleted)
-    buf_map('n', '<leader>tw', gitsigns.toggle_word_diff)
+    vim.keymap.set('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    vim.keymap.set('n', '<leader>td', gitsigns.toggle_deleted)
+    vim.keymap.set('n', '<leader>tw', gitsigns.toggle_word_diff)
 
     -- Text object
-    buf_map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
+    vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
 end
 
 return M
