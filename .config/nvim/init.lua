@@ -72,6 +72,9 @@ vim.g.vimtex_compiler_latexmk = {
 
 require('undotree').setup()
 
+-- lazygit
+vim.g.lazygit_floating_window_scaling_factor = 0.95
+
 -- hardtime
 vim.cmd("let g:hardtime_timeout = 300")
 vim.cmd("let g:hardtime_default_on = 1")
