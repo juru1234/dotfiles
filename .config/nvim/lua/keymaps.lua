@@ -1,13 +1,15 @@
+local M = {}
+
 -----------------------------------------------------------
 -- Define keymaps of Neovim and installed plugins.
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true }
-	if opts then
-		options = vim.tbl_extend('force', options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend('force', options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- Change leader to a comma
@@ -86,35 +88,35 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-	callback = function(ev)
-		-- Enable completion triggered by <c-x><c-o>
-		vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-		-- Buffer local mappings.
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		local opts = { buffer = ev.buf }
-		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-		vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-		vim.keymap.set('n', '<space>wl', function()
-			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-		vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
-		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-		vim.keymap.set('n', '<space>f', function()
-			vim.lsp.buf.format { async = true }
-		end, opts)
-		vim.keymap.set('v', '<space>f', function()
-			vim.lsp.buf.format { async = true }
-		end, opts)
-	end,
+        -- Buffer local mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local opts = { buffer = ev.buf }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, opts)
+        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<space>f', function()
+            vim.lsp.buf.format { async = true }
+        end, opts)
+        vim.keymap.set('v', '<space>f', function()
+            vim.lsp.buf.format { async = true }
+        end, opts)
+    end,
 })
 
 vim.keymap.set("n", "<leader>f", require('fzf-lua').files, { desc = "Fzf Files" })
@@ -136,12 +138,6 @@ vim.keymap.set("n", "<Leader>4", ":$argu 4<CR>")
 vim.keymap.set("n", "<Leader>5", ":$argu 5<CR>")
 vim.keymap.set("n", "<Leader>6", ":$argu 6<CR>")
 
--- gitgutter
-vim.keymap.set("n", "hs", "<Plug>(GitGutterStageHunk)")
-vim.keymap.set("n", "hu", "<Plug>(GitGutterUndoHunk)")
-vim.keymap.set("n", "hn", "<Plug>(GitGutterNextHunk)")
-vim.keymap.set("n", "hp", "<Plug>(GitGutterPrevHunk)")
-
 -- undotree
 vim.keymap.set('n', '<leader>u', require('undotree').toggle, { noremap = true, silent = true })
 
@@ -155,3 +151,52 @@ vim.keymap.set('i', '[;', "[<CR>]<C-c>O<Tab>")
 vim.keymap.set('i', '\'\'', "\'\'<Left>")
 vim.keymap.set('i', '\"\"', "\"\"<Left>")
 vim.keymap.set('i', '``', "``<Left>")
+
+-- GitSigns Keymaps
+M.gitsigns_keymaps = function(bufnr)
+    local gitsigns = require('gitsigns')
+
+    local function buf_map(mode, lhs, rhs, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, lhs, rhs, opts)
+    end
+
+    -- Actions
+    buf_map('n', 'hs', gitsigns.stage_hunk)
+    buf_map('n', 'hsu', gitsigns.undo_stage_hunk)
+    buf_map('n', 'hr', gitsigns.reset_hunk)
+    buf_map('n', 'hv', gitsigns.preview_hunk)
+    buf_map('n', 'hn', gitsigns.next_hunk)
+    buf_map('n', 'hp', gitsigns.prev_hunk)
+
+    buf_map('v', '<leader>hs', function()
+        gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    buf_map('v', '<leader>hr', function()
+        gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    buf_map('n', '<leader>hS', gitsigns.stage_buffer)
+    buf_map('n', '<leader>hR', gitsigns.reset_buffer)
+
+    buf_map('n', '<leader>hb', function()
+        gitsigns.blame_line({ full = true })
+    end)
+
+    buf_map('n', '<leader>hd', gitsigns.diffthis)
+    buf_map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+    buf_map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+    buf_map('n', '<leader>hq', gitsigns.setqflist)
+
+    -- Toggles
+    buf_map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    buf_map('n', '<leader>td', gitsigns.toggle_deleted)
+    buf_map('n', '<leader>tw', gitsigns.toggle_word_diff)
+
+    -- Text object
+    buf_map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
+end
+
+return M

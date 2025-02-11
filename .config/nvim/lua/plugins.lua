@@ -14,7 +14,6 @@ vim.call('plug#begin')
 -- vim plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
-Plug 'airblade/vim-gitgutter'
 Plug 'takac/vim-hardtime'
 Plug 'lervag/vimtex'
 -- neovim plugins
@@ -30,4 +29,5 @@ Plug('catppuccin/nvim', { as =  'catppuccin' })
 Plug 'jiaoshijie/undotree'
     -- plenary required by undotree
 Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 vim.call('plug#end')
