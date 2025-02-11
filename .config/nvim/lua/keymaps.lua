@@ -39,7 +39,8 @@ vim.keymap.set('n', '<leader>q', ':qa!<CR>')
 
 -- Terminal mappings
 vim.keymap.set('n', '<C-t>', ':Term<CR>', { noremap = true }) -- open
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')                   -- exit
+-- map escape to exit terminal mode (not good for lazygit)
+-- vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 vim.keymap.set('t', '<C-left>', '<C-\\><C-n><C-w>h')
 vim.keymap.set('t', '<C-down>', '<C-\\><C-n><C-w>j')
 vim.keymap.set('t', '<C-up>', '<C-\\><C-n><C-w>k')
