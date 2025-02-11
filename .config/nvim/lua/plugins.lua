@@ -30,4 +30,5 @@ Plug 'jiaoshijie/undotree'
     -- plenary required by undotree
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'kdheepak/lazygit.nvim'
 vim.call('plug#end')

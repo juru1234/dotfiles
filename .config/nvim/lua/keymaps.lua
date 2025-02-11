@@ -120,6 +120,10 @@ vim.keymap.set('i', '\'\'', "\'\'<Left>")
 vim.keymap.set('i', '\"\"', "\"\"<Left>")
 vim.keymap.set('i', '``', "``<Left>")
 
+-- lazygit
+vim.keymap.set('n', '<Leader>gg', ":LazyGit<CR>")
+
+
 -- gitsigns
 M.gitsigns_keymaps = function(bufnr)
     local gitsigns = require('gitsigns')
