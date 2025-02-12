@@ -10,7 +10,8 @@ local servers = {
 	{ name = 'pyright',       executable = 'pyright' },
 	{ name = 'tsserver',      executable = 'tsserver' },
 	{ name = 'lua_ls',        executable = 'lua-language-server' },
-	{ name = 'bashls',        executable = 'bash-language-server' }
+	{ name = 'bashls',        executable = 'bash-language-server' },
+	{ name = 'gopls',         executable = 'gopls' }
 }
 
 -- only set up LSP if it exists in $PATH
