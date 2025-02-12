@@ -108,8 +108,8 @@ vim.keymap.set("n", ",6", ":$argu 6<CR>")
 vim.keymap.set('n', ',u', require('undotree').toggle, { noremap = true, silent = true })
 
 -- hack for normal keybaords
-vim.keymap.set('i', 'kj', "<Esc>")
-vim.keymap.set('v', 'kj', "<Esc>")
+vim.keymap.set('i', 'kj', "<Esc>l")
+vim.keymap.set('v', 'kj', "<Esc>l")
 
 -- automatically expand
 vim.keymap.set('i', '(;', "(<CR>)<C-c>O<Tab>")
