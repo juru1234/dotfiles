@@ -109,7 +109,7 @@ vim.keymap.set('n', ',u', require('undotree').toggle, { noremap = true, silent =
 
 -- hack for normal keybaords
 vim.keymap.set('i', 'kj', "<Esc>l")
-vim.keymap.set('v', 'kj', "<Esc>l")
+vim.keymap.set('v', 'kj', "<Esc>")
 
 -- automatically expand
 vim.keymap.set('i', '(;', "(<CR>)<C-c>O<Tab>")
