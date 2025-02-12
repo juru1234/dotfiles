@@ -130,12 +130,12 @@ M.gitsigns_keymaps = function(bufnr)
     local gitsigns = require('gitsigns')
 
     -- Actions
-    vim.keymap.set('n', 'hs', gitsigns.stage_hunk)
-    vim.keymap.set('n', 'hsu', gitsigns.undo_stage_hunk)
-    vim.keymap.set('n', 'hr', gitsigns.reset_hunk)
-    vim.keymap.set('n', 'hv', gitsigns.preview_hunk)
-    vim.keymap.set('n', 'hn', gitsigns.next_hunk)
-    vim.keymap.set('n', 'hp', gitsigns.prev_hunk)
+    vim.keymap.set('n', 'ghs', gitsigns.stage_hunk)
+    vim.keymap.set('n', 'ghsu', gitsigns.undo_stage_hunk)
+    vim.keymap.set('n', 'ghu', gitsigns.reset_hunk)
+    vim.keymap.set('n', 'ghv', gitsigns.preview_hunk)
+    vim.keymap.set('n', 'ghn', gitsigns.next_hunk)
+    vim.keymap.set('n', 'ghp', gitsigns.prev_hunk)
 
     vim.keymap.set('v', '<leader>hs', function()
         gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
@@ -148,7 +148,7 @@ M.gitsigns_keymaps = function(bufnr)
     vim.keymap.set('n', '<leader>hS', gitsigns.stage_buffer)
     vim.keymap.set('n', '<leader>hR', gitsigns.reset_buffer)
 
-    vim.keymap.set('n', '<leader>hb', function()
+    vim.keymap.set('n', 'ggb', function()
         gitsigns.blame_line({ full = true })
     end)
 
