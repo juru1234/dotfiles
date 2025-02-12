@@ -48,11 +48,7 @@ require('lualine').setup {
     },
 }
 
-require('gitsigns').setup {
-    on_attach = function(bufnr)
-        require("keymaps").gitsigns_keymaps(bufnr)
-    end
-}
+require('gitsigns').setup()
 
 -- fast motions
 require('leap').create_default_mappings()

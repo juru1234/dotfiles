@@ -1,4 +1,4 @@
-local M = {}
+vim.g.mapleader = ','
 
 -- Disable arrow keys
 vim.keymap.set('', '<up>', '<nop>')
@@ -7,14 +7,14 @@ vim.keymap.set('', '<left>', '<nop>')
 vim.keymap.set('', '<right>', '<nop>')
 
 -- Clear search highlighting with , and c
-vim.keymap.set('n', ',c', ':nohl<CR>')
+vim.keymap.set('n', '<leader>c', ':nohl<CR>')
 
 -- Toggle auto-indenting for code paste
 vim.keymap.set('n', '<F2>', ':set invpaste paste?<CR>')
 
 -- Change split orientation
-vim.keymap.set('n', ',tk', '<C-w>t<C-w>K') -- change vertical to horizontal
-vim.keymap.set('n', ',th', '<C-w>t<C-w>H') -- change horizontal to vertical
+vim.keymap.set('n', '<leader>tk', '<C-w>t<C-w>K') -- change vertical to horizontal
+vim.keymap.set('n', '<leader>th', '<C-w>t<C-w>H') -- change horizontal to vertical
 
 -- Move around splits using Ctrl + {h,j,k,l}
 vim.keymap.set('n', '<C-left>', '<C-w>h')
@@ -23,13 +23,13 @@ vim.keymap.set('n', '<C-up>', '<C-w>k')
 vim.keymap.set('n', '<C-right>', '<C-w>l')
 
 -- Reload configuration without restart nvim
-vim.keymap.set('n', ',r', ':so %<CR>')
+vim.keymap.set('n', '<leader>z', ':so %<CR>')
 
 -- Fast saving with , and s
-vim.keymap.set('n', ',s', ':w<CR>')
+vim.keymap.set('n', '<leader>s', ':w<CR>')
 
 -- Close all windows and exit from Neovim with , and q
-vim.keymap.set('n', ',q', ':qa!<CR>')
+vim.keymap.set('n', '<leader>q', ':qa!<CR>')
 
 -----------------------------------------------------------
 -- Applications and Plugins shortcuts
@@ -85,81 +85,72 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- fzf-lua
-vim.keymap.set("n", ",f", require('fzf-lua').files, { desc = "Fzf Files" })
-vim.keymap.set("n", ",g", require('fzf-lua').live_grep, { desc = "Fzf Grep" })
-vim.keymap.set("n", ",b", require('fzf-lua').buffers, { desc = "Fzf Buffers" })
-vim.keymap.set("n", ",a", require('fzf-lua').args, { desc = "Fzf Arguments" })
-vim.keymap.set("n", ",d", require('fzf-lua').diagnostics_document, { desc = "Fzf Diagnostics" })
-vim.keymap.set("n", ",r", require('fzf-lua').lsp_references, { desc = "Fzf References" })
-vim.keymap.set("n", ",c", require('fzf-lua').lsp_code_actions, { desc = "Fzf Code Actions" })
+vim.keymap.set('n', '<leader>f', require('fzf-lua').files, { desc = 'Fzf Files' })
+vim.keymap.set('n', '<leader>g', require('fzf-lua').live_grep, { desc = 'Fzf Grep' })
+vim.keymap.set('n', '<leader>b', require('fzf-lua').buffers, { desc = 'Fzf Buffers' })
+vim.keymap.set('n', '<leader>a', require('fzf-lua').args, { desc = 'Fzf Arguments' })
+vim.keymap.set('n', '<leader>d', require('fzf-lua').diagnostics_document, { desc = 'Fzf Diagnostics' })
+vim.keymap.set('n', '<leader>r', require('fzf-lua').lsp_references, { desc = 'Fzf References' })
+vim.keymap.set('n', '<leader>c', require('fzf-lua').lsp_code_actions, { desc = 'Fzf Code Actions' })
 
 -- arglist
-vim.keymap.set("n", "<Tab>", Cycle_arg_list)
-vim.keymap.set("n", ",aa", ":ArgAdd<CR>")
-vim.keymap.set('n', ',ap', ':lua vim.cmd("ArgAdd " .. vim.fn.input("position (1..n): "))<CR>')
-vim.keymap.set("n", ",1", ":$argu 1<CR>")
-vim.keymap.set("n", ",2", ":$argu 2<CR>")
-vim.keymap.set("n", ",3", ":$argu 3<CR>")
-vim.keymap.set("n", ",4", ":$argu 4<CR>")
-vim.keymap.set("n", ",5", ":$argu 5<CR>")
-vim.keymap.set("n", ",6", ":$argu 6<CR>")
-
+vim.keymap.set('n', '<Tab>', Cycle_arg_list)
+vim.keymap.set('n', '<leader>aa', ':ArgAdd<CR>')
+vim.keymap.set('n', '<leader>ap', ':lua vim.cmd("ArgAdd " .. vim.fn.input("position (1..n): "))<CR>')
+vim.keymap.set('n', '<leader>1', ':$argu 1<CR>')
+vim.keymap.set('n', '<leader>2', ':$argu 2<CR>')
+vim.keymap.set('n', '<leader>3', ':$argu 3<CR>')
+vim.keymap.set('n', '<leader>4', ':$argu 4<CR>')
+vim.keymap.set('n', '<leader>5', ':$argu 5<CR>')
+vim.keymap.set('n', '<leader>6', ':$argu 6<CR>')
 
 -- hack for normal keybaords
-vim.keymap.set('i', 'kj', "<Esc>l")
-vim.keymap.set('v', 'kj', "<Esc>")
+vim.keymap.set('i', 'kj', '<Esc>l')
+vim.keymap.set('v', 'kj', '<Esc>')
 
 -- automatically expand
-vim.keymap.set('i', '(;', "(<CR>)<C-c>O<Tab>")
-vim.keymap.set('i', '{;', "{<CR>}<C-c>O<Tab>")
-vim.keymap.set('i', '[;', "[<CR>]<C-c>O<Tab>")
-vim.keymap.set('i', '\'\'', "\'\'<Left>")
-vim.keymap.set('i', '\"\"', "\"\"<Left>")
-vim.keymap.set('i', '``', "``<Left>")
+vim.keymap.set('i', '(;', '(<CR>)<C-c>O<Tab>')
+vim.keymap.set('i', '{;', '{<CR>}<C-c>O<Tab>')
+vim.keymap.set('i', '[;', '[<CR>]<C-c>O<Tab>')
+vim.keymap.set('i', '\'\'', '\'\'<Left>')
+vim.keymap.set('i', '\'\'', '\'\'<Left>')
+vim.keymap.set('i', '``', '``<Left>')
 
 -- lazygit
-vim.keymap.set('n', ',lg', ":LazyGit<CR>")
+vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>')
 
+-- gitsigns (use <C-w>w to switch e.g. to preview_hunk)
+vim.keymap.set('n', 'hs', require('gitsigns').stage_hunk)
+vim.keymap.set('n', 'hsu', require('gitsigns').undo_stage_hunk)
+vim.keymap.set('n', 'hu', require('gitsigns').reset_hunk)
+vim.keymap.set('n', 'hv', require('gitsigns').preview_hunk_inline)
+vim.keymap.set('n', 'hn', require('gitsigns').next_hunk)
+vim.keymap.set('n', 'hp', require('gitsigns').prev_hunk)
 
--- gitsigns
-M.gitsigns_keymaps = function(bufnr)
-    local gitsigns = require('gitsigns')
+vim.keymap.set('v', 'hs', function()
+    require('gitsigns').stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+end)
 
-    -- Actions
-    vim.keymap.set('n', 'ghs', gitsigns.stage_hunk)
-    vim.keymap.set('n', 'ghsu', gitsigns.undo_stage_hunk)
-    vim.keymap.set('n', 'hu', gitsigns.reset_hunk)
-    vim.keymap.set('n', 'ghv', gitsigns.preview_hunk)
-    vim.keymap.set('n', 'hn', gitsigns.next_hunk)
-    vim.keymap.set('n', 'hp', gitsigns.prev_hunk)
+vim.keymap.set('v', 'hu', function()
+    require('gitsigns').reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+end)
 
-    vim.keymap.set('v', ',hs', function()
-        gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-    end)
+vim.keymap.set('n', '<leader>hS', require('gitsigns').stage_buffer)
+vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer)
 
-    vim.keymap.set('v', ',hr', function()
-        gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-    end)
+vim.keymap.set('n', '<leader>bl', function()
+    require('gitsigns').blame_line({ full = true })
+end)
 
-    vim.keymap.set('n', ',hS', gitsigns.stage_buffer)
-    vim.keymap.set('n', ',hR', gitsigns.reset_buffer)
+vim.keymap.set('n', 'hd', require('gitsigns').diffthis)
+vim.keymap.set('n', '<leader>hD', function() require('gitsigns').diffthis('~') end)
+vim.keymap.set('n', '<leader>hQ', function() require('gitsigns').setqflist('all') end)
+vim.keymap.set('n', '<leader>hq', require('gitsigns').setqflist)
 
-    vim.keymap.set('n', ',gb', function()
-        gitsigns.blame_line({ full = true })
-    end)
+-- Toggles
+vim.keymap.set('n', '<leader>tb', require('gitsigns').toggle_current_line_blame)
+vim.keymap.set('n', '<leader>td', require('gitsigns').toggle_deleted)
+vim.keymap.set('n', '<leader>tw', require('gitsigns').toggle_word_diff)
 
-    vim.keymap.set('n', ',hd', gitsigns.diffthis)
-    vim.keymap.set('n', ',hD', function() gitsigns.diffthis('~') end)
-    vim.keymap.set('n', ',hQ', function() gitsigns.setqflist('all') end)
-    vim.keymap.set('n', ',hq', gitsigns.setqflist)
-
-    -- Toggles
-    vim.keymap.set('n', ',tb', gitsigns.toggle_current_line_blame)
-    vim.keymap.set('n', ',td', gitsigns.toggle_deleted)
-    vim.keymap.set('n', ',tw', gitsigns.toggle_word_diff)
-
-    -- Text object
-    vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
-end
-
-return M
+-- Text object
+vim.keymap.set({ 'o', 'x' }, 'ih', require('gitsigns').select_hunk)
