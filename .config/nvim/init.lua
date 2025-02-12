@@ -70,8 +70,6 @@ vim.g.vimtex_compiler_latexmk = {
     options = {},           -- Additional options (leave empty for default)
 }
 
-require('undotree').setup()
-
 -- lazygit
 vim.g.lazygit_floating_window_scaling_factor = 0.95
 

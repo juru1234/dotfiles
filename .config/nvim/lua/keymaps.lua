@@ -104,8 +104,6 @@ vim.keymap.set("n", ",4", ":$argu 4<CR>")
 vim.keymap.set("n", ",5", ":$argu 5<CR>")
 vim.keymap.set("n", ",6", ":$argu 6<CR>")
 
--- undotree
-vim.keymap.set('n', ',u', require('undotree').toggle, { noremap = true, silent = true })
 
 -- hack for normal keybaords
 vim.keymap.set('i', 'kj', "<Esc>l")

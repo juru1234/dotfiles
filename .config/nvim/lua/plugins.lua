@@ -26,9 +26,6 @@ Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/oil.nvim'
 Plug('catppuccin/nvim', { as =  'catppuccin' })
-Plug 'jiaoshijie/undotree'
-    -- plenary required by undotree
-Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'kdheepak/lazygit.nvim'
 vim.call('plug#end')
