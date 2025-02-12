@@ -51,10 +51,7 @@ require('lualine').setup {
 require('gitsigns').setup()
 
 -- fast motions
-require('leap').create_default_mappings()
-vim.keymap.set('n', 's', function()
-    require('leap').leap { target_windows = { vim.api.nvim_get_current_win() } }
-end)
+require('leap').setup({})
 
 -- vimtex
 vim.g.vimtex_view_general_viewer = 'okular'

@@ -119,6 +119,12 @@ vim.keymap.set('i', '``', '``<Left>')
 -- lazygit
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>')
 
+-- leap (Bidirectional s for Normal and Visual mode)
+vim.keymap.set({ 'n', 'x' }, 's', '<Plug>(leap)')
+vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
+vim.keymap.set('o', 's', '<Plug>(leap-forward)')
+vim.keymap.set('o', 'S', '<Plug>(leap-backward)')
+
 -- gitsigns (use <C-w>w to switch e.g. to preview_hunk)
 vim.keymap.set('n', 'hs', require('gitsigns').stage_hunk)
 vim.keymap.set('n', 'hsu', require('gitsigns').undo_stage_hunk)
