@@ -50,7 +50,6 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term alacritty
-
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
@@ -236,9 +235,10 @@ default_border pixel 2
 exec zsh ~/.config/sway/screensharing 
 
 input type:keyboard {
-  # Capslock key should work as escape key
-  # See /usr/share/X11/xkb/rules/xorg.lst for options
-	  xkb_options caps:escape_shifted_capslock
+    # Capslock key should work as escape key
+    # See /usr/share/X11/xkb/rules/xorg.lst for options
+    xkb_layout   "us"
+    xkb_options caps:escape_shifted_capslock,compose:ralt
 }
 workspace 1
 
