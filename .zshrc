@@ -97,6 +97,8 @@ alias gc="git commit"
 
 alias ls="eza"
 
+alias s="ssh"
+
 # shellcheck disable=SC1090
 source <(fzf --zsh)
 ##### zoxide lazy loading #####
