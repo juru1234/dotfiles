@@ -58,8 +58,8 @@ y = 0
 
 [keyboard]
 bindings = [
-{ key = "PageUp", mods = "None", action = "ScrollPageUp" },
-{ key = "PageDown", mods = "None", action = "ScrollPageDown" },
+#{ key = "PageUp", mods = "None", action = "ScrollPageUp" },
+#{ key = "PageDown", mods = "None", action = "ScrollPageDown" },
 { key = "m", mods = "Control", action = "ScrollPageDown" },
 { key = ",", mods = "Control", action = "ScrollPageUp" },
 { key = "j", mods = "Control", action = "ScrollPageDown" },
