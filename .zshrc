@@ -87,7 +87,6 @@ bindkey -M visual 'y' vi-yank-osc52
 alias v="nvim"
 alias vi="nvim"
 alias l="ls -al"
-alias cat="bat"
 alias lg="lazygit"
 
 #alias ls="eza"
