@@ -32,7 +32,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
 # zsh-syntax-highlighting causes slow start
 # shellcheck disable=SC2034
-plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting tmux git)
+plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting tmux git zoxide eza fzf)
 # shellcheck disable=SC1091
 
 # Automatically update without prompt
@@ -90,17 +90,9 @@ alias l="ls -al"
 alias cat="bat"
 alias lg="lazygit"
 
-alias ls="eza"
+#alias ls="eza"
 
 alias s="ssh"
-
-# shellcheck disable=SC1090
-source <(fzf --zsh)
-##### zoxide lazy loading #####
-z() {
-eval "$(zoxide init zsh)"
-z "$@"
-}
 
 # This fixes SSH agent forwarding togehter with
 # $HOME/.ssh/config
