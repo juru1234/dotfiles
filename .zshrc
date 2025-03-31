@@ -32,7 +32,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
 # zsh-syntax-highlighting causes slow start
 # shellcheck disable=SC2034
-plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting)
+plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting tmux git)
 # shellcheck disable=SC1091
 
 # Automatically update without prompt
@@ -89,11 +89,6 @@ alias vi="nvim"
 alias l="ls -al"
 alias cat="bat"
 alias lg="lazygit"
-
-alias g="git"
-alias gs="git status"
-alias gd="git diff"
-alias gc="git commit"
 
 alias ls="eza"
 
