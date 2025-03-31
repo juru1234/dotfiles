@@ -28,4 +28,6 @@ Plug 'stevearc/oil.nvim'
 Plug('catppuccin/nvim', { as =  'catppuccin' })
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'kdheepak/lazygit.nvim'
+Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install', ['for'] = { 'markdown' } })
+
 vim.call('plug#end')
