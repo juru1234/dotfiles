@@ -1,7 +1,10 @@
 #!/bin/bash
 
-[ ! -d ~/.oh-my-zsh ] && echo "Installing oh my zsh" &&
-	git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+[ ! -f ~/.oh-my-zsh/README.md ] && echo "Installing oh my zsh" &&
+    mkdir $HOME/temp_omz &&
+	git clone --quiet --depth 1 https://github.com/ohmyzsh/ohmyzsh.git $HOME/temp_omz &&
+    cp -r $HOME/temp_omz/* $HOME/.oh-my-zsh/ &&
+    rm -rf $HOME/temp_omz
 
 [ ! -d ~/.fzf ] && echo "Installing junegunn fzf integration" &&
 	git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
