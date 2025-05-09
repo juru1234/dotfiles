@@ -42,7 +42,7 @@ M.setup = function(ev)
             feedkeys '<C-n>'
         else
             if next(vim.lsp.get_clients { bufnr = 0 }) then
-                vim.lsp.completion.trigger()
+                vim.lsp.completion.get()
             else
                 if vim.bo.omnifunc == '' then
                     feedkeys '<C-x><C-n>'
