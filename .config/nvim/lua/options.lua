@@ -1,6 +1,6 @@
 vim.opt.diffopt:append("linematch:60")
 vim.o.clipboard = "unnamedplus"
---vim.o.completeopt = "menu,menuone,popup,fuzzy"
+vim.o.completeopt = "menu,menuone,popup,fuzzy"
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.expandtab = true

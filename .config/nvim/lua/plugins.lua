@@ -18,8 +18,6 @@ Plug 'takac/vim-hardtime'
 Plug 'lervag/vimtex'
 -- neovim plugins
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'j-hui/fidget.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug('ibhagwan/fzf-lua', { branch = 'main' })
