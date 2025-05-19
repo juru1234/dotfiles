@@ -9,6 +9,9 @@
 [ ! -d ~/.fzf ] && echo "Installing junegunn fzf integration" &&
 	git clone --quiet --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
+[ ! -d ~/.fzf/fzftab ] && echo "Installing fzf tab" &&
+	git clone --quiet --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf/fzftab
+
 DIR=~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 [ ! -d $DIR ] && echo "Installing zsh autosuggestions" &&
 	git clone --quiet --depth 1 https://github.com/zsh-users/zsh-autosuggestions "${DIR}"
@@ -41,6 +44,9 @@ plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting tmux git
 # Automatically update without prompt
 DISABLE_UPDATE_PROMPT=true
 source "$ZSH"/oh-my-zsh.sh
+
+autoload -U compinit; compinit
+source ~/.fzf/fzftab/fzf-tab.plugin.zsh
 
 # Setup VI mode
 bindkey -v
