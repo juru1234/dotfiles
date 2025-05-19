@@ -15,5 +15,13 @@ profile {
 	output DP-5 enable
 }
 profile {
+	output eDP-1 disable
+	output DP-6 enable
+}
+profile {
+	output eDP-1 disable
+	output DP-7 enable
+}
+profile {
 	output eDP-1 enable
 }
