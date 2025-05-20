@@ -36,6 +36,10 @@ ZSH_THEME="afowlerjulian"
 # shellcheck disable=SC2034
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374"
 
+# fzf-tab
+autoload -U compinit; compinit
+source ~/.fzf/fzftab/fzf-tab.plugin.zsh
+
 # zsh-syntax-highlighting causes slow start
 # shellcheck disable=SC2034
 plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting tmux git zoxide eza fzf)
@@ -45,8 +49,6 @@ plugins=(colored-man-pages zsh-autosuggestions fast-syntax-highlighting tmux git
 DISABLE_UPDATE_PROMPT=true
 source "$ZSH"/oh-my-zsh.sh
 
-autoload -U compinit; compinit
-source ~/.fzf/fzftab/fzf-tab.plugin.zsh
 
 # Setup VI mode
 bindkey -v
