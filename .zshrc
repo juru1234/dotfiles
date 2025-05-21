@@ -112,4 +112,7 @@ if [ ! -S "${STABLE_SSH_AUTH_SOCK}" ] && [ -S "${SSH_AUTH_SOCK-}" ]; then
 fi
 
 # shellcheck disable=SC1090
-FILE=~/.zshrc_system_specific && test -f $FILE && source $FILE
+FILE=~/.zshrc_system_specific
+if [ -f "$FILE" ]; then
+  source "$FILE"
+fi
