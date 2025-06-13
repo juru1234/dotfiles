@@ -38,8 +38,9 @@ vim.api.nvim_create_user_command(
 -- e.g. git grep --color=always foo | nvim +Pager
 vim.api.nvim_create_user_command("Pager", function(args)
 	local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_set_option_value("swapfile", false, { buf = buf })
 	local b = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_option(b, 'swapfile', false)
+    --vim.api.nvim_set_option_value("swapfile", false, { buf = b })
 	local chan = vim.api.nvim_open_term(b, {})
 	vim.api.nvim_chan_send(chan, table.concat(vim.api.nvim_buf_get_lines(buf, 0, -1, false), "\n"))
 	vim.api.nvim_win_set_buf(0, b)
