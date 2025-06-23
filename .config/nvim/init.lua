@@ -78,3 +78,9 @@ vim.cmd(':autocmd FileType c :iabbrev <buffer> pr@ pr_info("%s:\\n", __func__);<
 vim.cmd('autocmd BufEnter,BufNew term://* startinsert')
 vim.cmd('autocmd BufEnter,BufNew term://* set laststatus=0')
 vim.cmd('autocmd TermOpen * setlocal nonumber norelativenumber nobuflisted')
+
+-- system-specific config
+local sys_specific_config = vim.fn.stdpath("config") .. "/lua/systemspecific.lua"
+if vim.fn.filereadable(sys_specific_config) == 1 then
+  dofile(sys_specific_config)
+end
