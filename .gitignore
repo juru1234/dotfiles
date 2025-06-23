@@ -1,4 +1,5 @@
 .config/tmux/plugins
 .config/sway/sway_system_specific
+.config/nvim/lua/systemspecific.lua
 .config/i3/i3_system_specific
 .config/nvim/lazy-lock.json
