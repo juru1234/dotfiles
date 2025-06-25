@@ -72,6 +72,7 @@ vim.cmd("let g:hardtime_default_on = 1")
 
 -- abbreviations
 vim.cmd(':autocmd FileType c :iabbrev <buffer> pr@ pr_info("%s:\\n", __func__);<Esc>F\\i')
+vim.cmd('iabbrev sn@ -- snip --<Esc>F\\i')
 
 -- Set Terminal automatically to insert mode
 -- and hide line numbers in terminal mode
