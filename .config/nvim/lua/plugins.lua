@@ -26,7 +26,7 @@ Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/oil.nvim'
 Plug('catppuccin/nvim', { as =  'catppuccin' })
-Plug 'lewis6991/gitsigns.nvim'
+Plug('lewis6991/gitsigns.nvim', { commit = '60676707b6a5fa42369e8ff40a481ca45987e0d0' })
 Plug 'kdheepak/lazygit.nvim'
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install', ['for'] = { 'markdown' } })
 
