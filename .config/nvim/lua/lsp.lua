@@ -1,44 +1,47 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lspconfig = require('lspconfig')
-
--- name: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
--- executable: name of the language server executable in $PATH
 local servers = {
-	{ name = 'clangd',        executable = 'clangd' },
-	{ name = 'rust_analyzer', executable = 'rust-analyzer' },
-	{ name = 'pyright',       executable = 'pyright' },
-	{ name = 'tsserver',      executable = 'tsserver' },
-	{ name = 'lua_ls',        executable = 'lua-language-server' },
-	{ name = 'bashls',        executable = 'bash-language-server' },
-	{ name = 'gopls',         executable = 'gopls' }
+  clangd = {
+    cmd = { "clangd" },
+    capabilities = capabilities,
+  },
+  rust_analyzer = {
+    cmd = { "rust-analyzer" },
+    capabilities = capabilities,
+    settings = {
+      ["rust-analyzer"] = {
+        check = { command = "clippy" },
+      },
+    },
+  },
+  pyright = {
+    cmd = { "pyright" },
+    capabilities = capabilities,
+  },
+  tsserver = {
+    cmd = { "tsserver" },
+    capabilities = capabilities,
+  },
+  lua_ls = {
+    cmd = { "lua-language-server" },
+    capabilities = capabilities,
+  },
+  bashls = {
+    cmd = { "bash-language-server" },
+    capabilities = capabilities,
+    filetypes = { "sh", "bash", "zsh" },
+  },
+  gopls = {
+    cmd = { "gopls" },
+    capabilities = capabilities,
+  },
 }
 
--- only set up LSP if it exists in $PATH
-for _, server in ipairs(servers) do
-	if Is_executable_in_path(server.executable) then
-		if server.name == "rust_analyzer" then
-			lspconfig[server.name].setup {
-				capabilities = capabilities,
-				settings = {
-					["rust-analyzer"] = {
-						check = {
-							command = "clippy",
-						},
-					},
-				},
-			}
-		elseif server.name == "bashls" then
-			lspconfig[server.name].setup {
-				capabilities = capabilities,
-				filetypes = { "sh", "bash", "zsh" },
-			}
-		else
-			lspconfig[server.name].setup {
-				capabilities = capabilities,
-			}
-		end
-	end
+for name, config in pairs(servers) do
+  if Is_executable_in_path(config.cmd[1]) then
+    vim.lsp.config[name] = config
+    vim.lsp.enable(name)
+  end
 end
 
 -- nvim-cmp: completion engine plugin for neovim
