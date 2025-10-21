@@ -124,39 +124,3 @@ vim.keymap.set({ 'n', 'x' }, 's', '<Plug>(leap)')
 vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
 vim.keymap.set('o', 's', '<Plug>(leap-forward)')
 vim.keymap.set('o', 'S', '<Plug>(leap-backward)')
-
--- gitsigns (use <C-w>w to switch e.g. to preview_hunk)
-vim.keymap.set('n', 'hs', require('gitsigns').stage_hunk)
-vim.keymap.set('n', 'hsu', require('gitsigns').undo_stage_hunk)
-vim.keymap.set('n', 'hu', require('gitsigns').reset_hunk)
-vim.keymap.set('n', 'hv', require('gitsigns').preview_hunk_inline)
-vim.keymap.set('n', 'hn', require('gitsigns').next_hunk)
-vim.keymap.set('n', 'hp', require('gitsigns').prev_hunk)
-
-vim.keymap.set('v', 'hs', function()
-    require('gitsigns').stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-end)
-
-vim.keymap.set('v', 'hu', function()
-    require('gitsigns').reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-end)
-
-vim.keymap.set('n', '<leader>hS', require('gitsigns').stage_buffer)
-vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer)
-
-vim.keymap.set('n', '<leader>bl', function()
-    require('gitsigns').blame_line({ full = true })
-end)
-
-vim.keymap.set('n', 'hd', require('gitsigns').diffthis)
-vim.keymap.set('n', '<leader>hD', function() require('gitsigns').diffthis('~') end)
-vim.keymap.set('n', '<leader>hQ', function() require('gitsigns').setqflist('all') end)
-vim.keymap.set('n', '<leader>hq', require('gitsigns').setqflist)
-
--- Toggles
-vim.keymap.set('n', '<leader>tb', require('gitsigns').toggle_current_line_blame)
-vim.keymap.set('n', '<leader>td', require('gitsigns').toggle_deleted)
-vim.keymap.set('n', '<leader>tw', require('gitsigns').toggle_word_diff)
-
--- Text object
-vim.keymap.set({ 'o', 'x' }, 'ih', require('gitsigns').select_hunk)

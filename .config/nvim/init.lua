@@ -48,8 +48,6 @@ require('lualine').setup {
     },
 }
 
-require('gitsigns').setup()
-
 -- fast motions
 require('leap').setup({})
 
