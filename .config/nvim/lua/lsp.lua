@@ -44,6 +44,11 @@ for name, config in pairs(servers) do
   end
 end
 
+vim.diagnostic.config({
+  virtual_lines = false,
+  virtual_text = true,
+})
+
 -- nvim-cmp: completion engine plugin for neovim
 local cmp = require 'cmp'
 cmp.setup {
