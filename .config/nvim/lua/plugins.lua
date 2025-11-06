@@ -27,6 +27,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug('ibhagwan/fzf-lua', { branch = 'main' })
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/oil.nvim'
+Plug 'stevearc/conform.nvim'
 Plug('catppuccin/nvim', { as =  'catppuccin' })
 Plug 'kdheepak/lazygit.nvim'
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install', ['for'] = { 'markdown' } })

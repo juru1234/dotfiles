@@ -51,6 +51,16 @@ require('lualine').setup {
 -- fast motions
 require('leap').setup({})
 
+-- conform
+require("conform").setup({
+  formatters_by_ft = {
+    html = { "djlint" },
+    htmldjango = { "djlint" },
+    jinja = { "djlint" },
+  },
+})
+
+
 -- vimtex
 vim.g.vimtex_view_general_viewer = 'okular'
 vim.g.vimtex_compiler_latexmk = {
