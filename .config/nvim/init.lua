@@ -57,6 +57,11 @@ require("conform").setup({
     html = { "djlint" },
     htmldjango = { "djlint" },
     jinja = { "djlint" },
+    lua = { "stylua" },
+    python = { "isort", "black" },
+    rust = { "rustfmt", lsp_format = "fallback" },
+    css = { "css_beautify" },
+    yaml = { "yamlfmt" },
   },
 })
 
