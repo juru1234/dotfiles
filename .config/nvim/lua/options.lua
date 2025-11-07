@@ -14,10 +14,10 @@ vim.o.inccommand = "split"
 vim.o.ignorecase = true
 vim.o.list = true
 vim.opt.listchars = {
-    tab = "▏ ",
-    trail = "·",
-    extends = "»",
-    precedes = "«",
+	tab = "▏ ",
+	trail = "·",
+	extends = "»",
+	precedes = "«",
 }
 vim.o.mouse = "nv"
 vim.o.number = true
