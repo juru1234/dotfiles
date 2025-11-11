@@ -76,14 +76,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("v", "<space>ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<space>f", function()
-			require("conform").format({ async = true, lsp_fallback = true })
-		end)
-		vim.keymap.set("v", "<space>f", function()
-			vim.lsp.buf.format({ async = true })
-		end, opts)
 	end,
 })
+
+vim.keymap.set("n", "<space>f", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end)
+vim.keymap.set("v", "<space>f", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end, opts)
 
 -- fzf-lua
 vim.keymap.set("n", "<leader>f", require("fzf-lua").files, { desc = "Fzf Files" })
