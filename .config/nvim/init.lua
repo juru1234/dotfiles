@@ -94,6 +94,28 @@ vim.cmd("autocmd BufEnter,BufNew term://* startinsert")
 vim.cmd("autocmd BufEnter,BufNew term://* set laststatus=0")
 vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber nobuflisted")
 
+-- Highlight dangerous stuff in Rust
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function()
+    -- Define the red highlight once
+    vim.api.nvim_set_hl(0, "RustRedAlert", { fg = "#ff3333", bold = true })
+
+    local ns = vim.api.nvim_create_namespace("rust_red_alert")
+    vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)  -- clean previous matches
+
+    -- Highlight every literal ? 
+    vim.fn.matchadd("RustRedAlert", "?", -1)
+
+    -- Highlight the word "unwrap" only when it's followed by (
+    -- This regex makes sure we don't highlight unrelated idents like my_var_unwrap
+    vim.fn.matchadd("RustRedAlert", "\\vunwrap\\ze\\s*\\(", -1)
+
+    -- Bonus: also catch .expect(  (very common footgun)
+    vim.fn.matchadd("RustRedAlert", "\\v\\.expect\\ze\\s*\\(", -1)
+  end,
+})
+
 -- system-specific config
 local sys_specific_config = vim.fn.stdpath("config") .. "/lua/systemspecific.lua"
 if vim.fn.filereadable(sys_specific_config) == 1 then
