@@ -3,7 +3,17 @@ output "Lenovo Group Limited LEN T32p-20*" {
     alias $WORK_1
 }
 
+output "BNQ BenQ PD2705Q*" {
+    scale 1.0
+    alias $HOME_1
+}
+
 profile {
     output $WORK_1 enable
+    output eDP-1 disable
+}
+
+profile {
+    output $HOME_1 enable
     output eDP-1 disable
 }
