@@ -1,6 +1,16 @@
-output "Lenovo Group Limited LEN T32p-20*" {
+output "BOE 0x08C2 Unknown" {
+    scale 1.0
+    alias $INTERNAL
+}
+
+output "Lenovo Group Limited T32p-30*" {
     scale 1.1
     alias $WORK_1
+}
+
+output "Lenovo Group Limited LEN T32p-20*" {
+    scale 1.1
+    alias $WORK_2
 }
 
 output "BNQ BenQ PD2705Q*" {
@@ -8,12 +18,46 @@ output "BNQ BenQ PD2705Q*" {
     alias $HOME_1
 }
 
+output "Lightware Visual Engineering Univ_4k_PCM Unknown" {
+    scale 2.0
+    alias $WORK_3
+}
+
+output "AOC Q3279WG5B*" {
+    scale 1.0
+    alias $WORK_4
+}
+
 profile {
     output $WORK_1 enable
-    output eDP-1 disable
+    output $INTERNAL disable
+}
+
+profile {
+    output $WORK_4 enable
+    output $INTERNAL disable
+}
+
+profile {
+    output $WORK_3 enable
+    output $INTERNAL enable
+}
+
+profile {
+    output $WORK_2 enable
+    output $INTERNAL disable
+}
+
+profile {
+    output $WORK_1 enable
+    output $INTERNAL disable
 }
 
 profile {
     output $HOME_1 enable
     output eDP-1 disable
+}
+
+profile {
+    output $INTERNAL enable
 }
