@@ -38,9 +38,6 @@ client.background        $base
 #unify both linux clipboards
 exec wl-paste -p -t text --watch wl-copy
 
-#kanshi must run as a service: systemctl --user enable kanshi.service
-exec_always pkill kanshi; exec kanshi &
-
 # Windows key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -237,9 +234,12 @@ exec zsh ~/.config/sway/screensharing
 input type:keyboard {
     # Capslock key should work as escape key
     # See /usr/share/X11/xkb/rules/xorg.lst for options
-    xkb_layout   "us"
-    xkb_options caps:escape_shifted_capslock,compose:ralt
+    xkb_layout   "de(nodeadkeys)"
 }
 workspace 1
 
 include ~/.config/sway/sway_system_specific
+
+# https://wiki.archlinux.org/title/Sway#Manage_Sway-specific_daemons_with_systemd
+# For kanshi
+exec_always systemctl --user start sway-session.target
