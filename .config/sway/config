@@ -221,6 +221,9 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
 set $XDG_CURRENT_DESKTOP "${XDG_CURRENT_DESKTOP:-sway}"
 set $MOZ_ENABLE_WAYLAND 1
 
+# Get rid of flickering
+set $WLR_RENDER_NO_EXPLICIT_SYNC 1
+
 # Notification Daemon
 exec swaync
 
