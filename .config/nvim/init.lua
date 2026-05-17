@@ -1,6 +1,6 @@
 if vim.fn.has("nvim-0.12") == 0 then
-	vim.notify("This config only supports Neovim 0.12+", vim.log.levels.ERROR)
-	return
+    vim.notify("This config only supports Neovim 0.12+", vim.log.levels.ERROR)
+    return
 end
 
 require("helpers")
@@ -10,41 +10,63 @@ require("keymaps")
 require("lsp")
 require("options")
 
+require('nvim-treesitter').setup {
+    -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+    install_dir = vim.fn.stdpath('data') .. '/site'
+}
+require('nvim-treesitter').install { 'rust', 'javascript', 'lua', 'c', 'python' }
+
 vim.cmd.colorscheme("catppuccin-mocha")
 
 -- Use osc52 as clipboard provider
 local function paste()
-	return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
 end
 vim.g.clipboard = {
-	name = "OSC 52",
-	copy = {
-		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-	},
-	paste = {
-		["+"] = paste,
-		["*"] = paste,
-	},
+    name = "OSC 52",
+    copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+        ["+"] = paste,
+        ["*"] = paste,
+    },
 }
 -- To ALWAYS use the clipboard for ALL operations
 -- (instead of interacting with the "+" and/or "*" registers explicitly):
 vim.opt.clipboard = "unnamedplus"
 
--- Show the status of the LSP bottom right
-require("fidget").setup()
 -- file explorer
 require("oil").setup()
 -- statusline
 require("lualine").setup({
-	options = {
-		icons_enabled = false,
-		component_separators = "|",
-		section_separators = "",
-	},
-	sections = {
-		lualine_c = { { "filename", path = 1 } },
-	},
+    options = {
+        icons_enabled = false,
+        component_separators = "|",
+        section_separators = "",
+    },
+    sections = {
+        lualine_a = {
+            {
+                'lsp_status',
+                icon = '', -- f013
+                symbols = {
+                    -- Standard unicode symbols to cycle through for LSP progress:
+                    spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                    -- Standard unicode symbol for when LSP is done:
+                    done = '✓',
+                    -- Delimiter inserted between LSP names:
+                    separator = ' ',
+                },
+                -- List of LSP names to ignore (e.g., `null-ls`):
+                ignore_lsp = {},
+                -- Display the LSP name
+                show_name = true,
+            }
+        },
+        lualine_c = { { "filename", path = 1 } },
+    },
 })
 
 -- fast motions
@@ -52,27 +74,27 @@ require("leap").setup({})
 
 -- conform
 require("conform").setup({
-	formatters_by_ft = {
-		html = { "djlint" },
-		htmldjango = { "djlint" },
-		jinja = { "djlint" },
-		lua = { "stylua" },
-		python = { "isort", "black" },
-		rust = { "rustfmt", lsp_format = "fallback" },
-		c = { "clang-format", lsp_format = "fallback" },
-		css = { "css_beautify" },
-		yaml = { "yamlfmt" },
-	},
+    formatters_by_ft = {
+        html = { "djlint" },
+        htmldjango = { "djlint" },
+        jinja = { "djlint" },
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        rust = { "rustfmt", lsp_format = "fallback" },
+        c = { "clang-format", lsp_format = "fallback" },
+        css = { "css_beautify" },
+        yaml = { "yamlfmt" },
+    },
 })
 
 -- vimtex
 vim.g.vimtex_view_general_viewer = "okular"
 vim.g.vimtex_compiler_latexmk = {
-	build_dir = "", -- Specify the build directory if needed
-	callback = 1, -- Enable the callback function
-	continuous = 1, -- Disable continuous mode (for single builds)
-	executable = "latexmk", -- Use 'make' as the build command
-	options = {}, -- Additional options (leave empty for default)
+    build_dir = "",         -- Specify the build directory if needed
+    callback = 1,           -- Enable the callback function
+    continuous = 1,         -- Disable continuous mode (for single builds)
+    executable = "latexmk", -- Use 'make' as the build command
+    options = {},           -- Additional options (leave empty for default)
 }
 
 -- lazygit
@@ -95,28 +117,28 @@ vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber nobuflisted")
 
 -- Highlight dangerous stuff in Rust
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "rust",
-  callback = function()
-    -- Define the red highlight once
-    vim.api.nvim_set_hl(0, "RustRedAlert", { fg = "#ff3333", bold = true })
+    pattern = "rust",
+    callback = function()
+        -- Define the red highlight once
+        vim.api.nvim_set_hl(0, "RustRedAlert", { fg = "#ff3333", bold = true })
 
-    local ns = vim.api.nvim_create_namespace("rust_red_alert")
-    vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)  -- clean previous matches
+        local ns = vim.api.nvim_create_namespace("rust_red_alert")
+        vim.api.nvim_buf_clear_namespace(0, ns, 0, -1) -- clean previous matches
 
-    -- Highlight every literal ? 
-    vim.fn.matchadd("RustRedAlert", "?", -1)
+        -- Highlight every literal ?
+        vim.fn.matchadd("RustRedAlert", "?", -1)
 
-    -- Highlight the word "unwrap" only when it's followed by (
-    -- This regex makes sure we don't highlight unrelated idents like my_var_unwrap
-    vim.fn.matchadd("RustRedAlert", "\\vunwrap\\ze\\s*\\(", -1)
+        -- Highlight the word "unwrap" only when it's followed by (
+        -- This regex makes sure we don't highlight unrelated idents like my_var_unwrap
+        vim.fn.matchadd("RustRedAlert", "\\vunwrap\\ze\\s*\\(", -1)
 
-    -- Bonus: also catch .expect(  (very common footgun)
-    vim.fn.matchadd("RustRedAlert", "\\v\\.expect\\ze\\s*\\(", -1)
-  end,
+        -- Bonus: also catch .expect(  (very common footgun)
+        vim.fn.matchadd("RustRedAlert", "\\v\\.expect\\ze\\s*\\(", -1)
+    end,
 })
 
 -- system-specific config
 local sys_specific_config = vim.fn.stdpath("config") .. "/lua/systemspecific.lua"
 if vim.fn.filereadable(sys_specific_config) == 1 then
-	dofile(sys_specific_config)
+    dofile(sys_specific_config)
 end
