@@ -35,8 +35,6 @@ vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200
 
-vim.g.mapleader = " "
-
 vim.g.editorconfig = true
 
 -- Fix markdown indentation settings
