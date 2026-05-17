@@ -1,5 +1,5 @@
-if vim.fn.has("nvim-0.10") == 0 then
-	vim.notify("This config only supports Neovim 0.10+", vim.log.levels.ERROR)
+if vim.fn.has("nvim-0.12") == 0 then
+	vim.notify("This config only supports Neovim 0.12+", vim.log.levels.ERROR)
 	return
 end
 
