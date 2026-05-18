@@ -3,6 +3,9 @@ if vim.fn.has("nvim-0.12") == 0 then
     return
 end
 
+-- bad hacky way which completely disables treesitter
+vim.treesitter.start = function() return end
+
 require("helpers")
 require("plugins")
 require("keymaps")
