@@ -4,6 +4,7 @@ if vim.fn.has("nvim-0.12") == 0 then
 end
 
 -- bad hacky way which completely disables treesitter
+-- allows to open e.g. lua files without having nvim-treesitter plugin installed
 vim.treesitter.start = function() return end
 
 require("helpers")
